@@ -1,8 +1,11 @@
+C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/ExperimentalBuild.dir
+C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/ExperimentalStart.dir
+C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/chip8.dir
 C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/NightlyMemoryCheck.dir
 C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/Experimental.dir
 C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/NightlySubmit.dir
-C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/NightlyConfigure.dir
 C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/NightlyBuild.dir
+C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/NightlyConfigure.dir
 C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/NightlyStart.dir
 C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/Continuous.dir
 C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/NightlyTest.dir
@@ -10,9 +13,6 @@ C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/Nightly.dir
 C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/NightlyUpdate.dir
 C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/NightlyCoverage.dir
 C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/NightlyMemCheck.dir
-C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/chip8.dir
-C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/ExperimentalBuild.dir
-C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/ExperimentalStart.dir
 C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/ExperimentalUpdate.dir
 C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/ContinuousMemCheck.dir
 C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/ExperimentalConfigure.dir

@@ -69,6 +69,7 @@ include CMakeFiles/chip8.dir/progress.make
 include CMakeFiles/chip8.dir/flags.make
 
 CMakeFiles/chip8.dir/src/main.cpp.obj: CMakeFiles/chip8.dir/flags.make
+CMakeFiles/chip8.dir/src/main.cpp.obj: CMakeFiles/chip8.dir/includes_CXX.rsp
 CMakeFiles/chip8.dir/src/main.cpp.obj: ../src/main.cpp
 CMakeFiles/chip8.dir/src/main.cpp.obj: CMakeFiles/chip8.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/chip8.dir/src/main.cpp.obj"

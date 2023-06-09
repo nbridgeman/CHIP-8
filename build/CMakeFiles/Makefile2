@@ -70,11 +70,14 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: CMakeFiles/ExperimentalBuild.dir/clean
+clean: CMakeFiles/ExperimentalStart.dir/clean
+clean: CMakeFiles/chip8.dir/clean
 clean: CMakeFiles/NightlyMemoryCheck.dir/clean
 clean: CMakeFiles/Experimental.dir/clean
 clean: CMakeFiles/NightlySubmit.dir/clean
-clean: CMakeFiles/NightlyConfigure.dir/clean
 clean: CMakeFiles/NightlyBuild.dir/clean
+clean: CMakeFiles/NightlyConfigure.dir/clean
 clean: CMakeFiles/NightlyStart.dir/clean
 clean: CMakeFiles/Continuous.dir/clean
 clean: CMakeFiles/NightlyTest.dir/clean
@@ -82,9 +85,6 @@ clean: CMakeFiles/Nightly.dir/clean
 clean: CMakeFiles/NightlyUpdate.dir/clean
 clean: CMakeFiles/NightlyCoverage.dir/clean
 clean: CMakeFiles/NightlyMemCheck.dir/clean
-clean: CMakeFiles/chip8.dir/clean
-clean: CMakeFiles/ExperimentalBuild.dir/clean
-clean: CMakeFiles/ExperimentalStart.dir/clean
 clean: CMakeFiles/ExperimentalUpdate.dir/clean
 clean: CMakeFiles/ContinuousMemCheck.dir/clean
 clean: CMakeFiles/ExperimentalConfigure.dir/clean
@@ -100,6 +100,84 @@ clean: CMakeFiles/ContinuousBuild.dir/clean
 clean: CMakeFiles/ContinuousTest.dir/clean
 clean: CMakeFiles/ContinuousCoverage.dir/clean
 .PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/ExperimentalBuild.dir
+
+# All Build rule for target.
+CMakeFiles/ExperimentalBuild.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalBuild.dir\build.make CMakeFiles/ExperimentalBuild.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalBuild.dir\build.make CMakeFiles/ExperimentalBuild.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles --progress-num= "Built target ExperimentalBuild"
+.PHONY : CMakeFiles/ExperimentalBuild.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/ExperimentalBuild.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles 0
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/ExperimentalBuild.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles 0
+.PHONY : CMakeFiles/ExperimentalBuild.dir/rule
+
+# Convenience name for target.
+ExperimentalBuild: CMakeFiles/ExperimentalBuild.dir/rule
+.PHONY : ExperimentalBuild
+
+# clean rule for target.
+CMakeFiles/ExperimentalBuild.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalBuild.dir\build.make CMakeFiles/ExperimentalBuild.dir/clean
+.PHONY : CMakeFiles/ExperimentalBuild.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/ExperimentalStart.dir
+
+# All Build rule for target.
+CMakeFiles/ExperimentalStart.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalStart.dir\build.make CMakeFiles/ExperimentalStart.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalStart.dir\build.make CMakeFiles/ExperimentalStart.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles --progress-num= "Built target ExperimentalStart"
+.PHONY : CMakeFiles/ExperimentalStart.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/ExperimentalStart.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles 0
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/ExperimentalStart.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles 0
+.PHONY : CMakeFiles/ExperimentalStart.dir/rule
+
+# Convenience name for target.
+ExperimentalStart: CMakeFiles/ExperimentalStart.dir/rule
+.PHONY : ExperimentalStart
+
+# clean rule for target.
+CMakeFiles/ExperimentalStart.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalStart.dir\build.make CMakeFiles/ExperimentalStart.dir/clean
+.PHONY : CMakeFiles/ExperimentalStart.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/chip8.dir
+
+# All Build rule for target.
+CMakeFiles/chip8.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\chip8.dir\build.make CMakeFiles/chip8.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\chip8.dir\build.make CMakeFiles/chip8.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles --progress-num=1,2 "Built target chip8"
+.PHONY : CMakeFiles/chip8.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/chip8.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/chip8.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles 0
+.PHONY : CMakeFiles/chip8.dir/rule
+
+# Convenience name for target.
+chip8: CMakeFiles/chip8.dir/rule
+.PHONY : chip8
+
+# clean rule for target.
+CMakeFiles/chip8.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\chip8.dir\build.make CMakeFiles/chip8.dir/clean
+.PHONY : CMakeFiles/chip8.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/NightlyMemoryCheck.dir
@@ -180,32 +258,6 @@ CMakeFiles/NightlySubmit.dir/clean:
 .PHONY : CMakeFiles/NightlySubmit.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/NightlyConfigure.dir
-
-# All Build rule for target.
-CMakeFiles/NightlyConfigure.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\NightlyConfigure.dir\build.make CMakeFiles/NightlyConfigure.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\NightlyConfigure.dir\build.make CMakeFiles/NightlyConfigure.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles --progress-num= "Built target NightlyConfigure"
-.PHONY : CMakeFiles/NightlyConfigure.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/NightlyConfigure.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles 0
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/NightlyConfigure.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles 0
-.PHONY : CMakeFiles/NightlyConfigure.dir/rule
-
-# Convenience name for target.
-NightlyConfigure: CMakeFiles/NightlyConfigure.dir/rule
-.PHONY : NightlyConfigure
-
-# clean rule for target.
-CMakeFiles/NightlyConfigure.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\NightlyConfigure.dir\build.make CMakeFiles/NightlyConfigure.dir/clean
-.PHONY : CMakeFiles/NightlyConfigure.dir/clean
-
-#=============================================================================
 # Target rules for target CMakeFiles/NightlyBuild.dir
 
 # All Build rule for target.
@@ -230,6 +282,32 @@ NightlyBuild: CMakeFiles/NightlyBuild.dir/rule
 CMakeFiles/NightlyBuild.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\NightlyBuild.dir\build.make CMakeFiles/NightlyBuild.dir/clean
 .PHONY : CMakeFiles/NightlyBuild.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/NightlyConfigure.dir
+
+# All Build rule for target.
+CMakeFiles/NightlyConfigure.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NightlyConfigure.dir\build.make CMakeFiles/NightlyConfigure.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NightlyConfigure.dir\build.make CMakeFiles/NightlyConfigure.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles --progress-num= "Built target NightlyConfigure"
+.PHONY : CMakeFiles/NightlyConfigure.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/NightlyConfigure.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles 0
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/NightlyConfigure.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles 0
+.PHONY : CMakeFiles/NightlyConfigure.dir/rule
+
+# Convenience name for target.
+NightlyConfigure: CMakeFiles/NightlyConfigure.dir/rule
+.PHONY : NightlyConfigure
+
+# clean rule for target.
+CMakeFiles/NightlyConfigure.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NightlyConfigure.dir\build.make CMakeFiles/NightlyConfigure.dir/clean
+.PHONY : CMakeFiles/NightlyConfigure.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/NightlyStart.dir
@@ -412,84 +490,6 @@ NightlyMemCheck: CMakeFiles/NightlyMemCheck.dir/rule
 CMakeFiles/NightlyMemCheck.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\NightlyMemCheck.dir\build.make CMakeFiles/NightlyMemCheck.dir/clean
 .PHONY : CMakeFiles/NightlyMemCheck.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/chip8.dir
-
-# All Build rule for target.
-CMakeFiles/chip8.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\chip8.dir\build.make CMakeFiles/chip8.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\chip8.dir\build.make CMakeFiles/chip8.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles --progress-num=1,2 "Built target chip8"
-.PHONY : CMakeFiles/chip8.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/chip8.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/chip8.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles 0
-.PHONY : CMakeFiles/chip8.dir/rule
-
-# Convenience name for target.
-chip8: CMakeFiles/chip8.dir/rule
-.PHONY : chip8
-
-# clean rule for target.
-CMakeFiles/chip8.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\chip8.dir\build.make CMakeFiles/chip8.dir/clean
-.PHONY : CMakeFiles/chip8.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/ExperimentalBuild.dir
-
-# All Build rule for target.
-CMakeFiles/ExperimentalBuild.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalBuild.dir\build.make CMakeFiles/ExperimentalBuild.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalBuild.dir\build.make CMakeFiles/ExperimentalBuild.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles --progress-num= "Built target ExperimentalBuild"
-.PHONY : CMakeFiles/ExperimentalBuild.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/ExperimentalBuild.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles 0
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/ExperimentalBuild.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles 0
-.PHONY : CMakeFiles/ExperimentalBuild.dir/rule
-
-# Convenience name for target.
-ExperimentalBuild: CMakeFiles/ExperimentalBuild.dir/rule
-.PHONY : ExperimentalBuild
-
-# clean rule for target.
-CMakeFiles/ExperimentalBuild.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalBuild.dir\build.make CMakeFiles/ExperimentalBuild.dir/clean
-.PHONY : CMakeFiles/ExperimentalBuild.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/ExperimentalStart.dir
-
-# All Build rule for target.
-CMakeFiles/ExperimentalStart.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalStart.dir\build.make CMakeFiles/ExperimentalStart.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalStart.dir\build.make CMakeFiles/ExperimentalStart.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles --progress-num= "Built target ExperimentalStart"
-.PHONY : CMakeFiles/ExperimentalStart.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/ExperimentalStart.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles 0
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/ExperimentalStart.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles 0
-.PHONY : CMakeFiles/ExperimentalStart.dir/rule
-
-# Convenience name for target.
-ExperimentalStart: CMakeFiles/ExperimentalStart.dir/rule
-.PHONY : ExperimentalStart
-
-# clean rule for target.
-CMakeFiles/ExperimentalStart.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalStart.dir\build.make CMakeFiles/ExperimentalStart.dir/clean
-.PHONY : CMakeFiles/ExperimentalStart.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/ExperimentalUpdate.dir

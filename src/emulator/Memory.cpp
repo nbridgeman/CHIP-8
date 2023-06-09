@@ -1,4 +1,4 @@
-#include "Memory.hpp"
+#include "../../include/Memory.hpp"
 
 Memory::Memory() { }
 
@@ -8,7 +8,7 @@ void Memory::init() {
     loadFontSet();
 }
 
-Memory::loadFontSet() {
+void Memory::loadFontSet() {
     static constexpr uint8_t num_char = 16;
     static constexpr uint8_t char_size = 5;
 
@@ -36,7 +36,7 @@ Memory::loadFontSet() {
     }
 }
 
-const uint8_t Memory::read(uint8_t addr) {
+const uint8_t Memory::read(uint16_t addr) {
     if (addr > Memory::size) {
         // TODO: Turn addr into a hex before printing.
         std::cout << "[Memory] Address " << unsigned(addr) << " is out of range." << std::endl;
@@ -52,4 +52,8 @@ void Memory::write(uint16_t addr, uint8_t value) {
         return;
     }
     mem[addr] = value;
+}
+
+uint16_t Memory::getCharacter(uint8_t value) {
+    return(mem[Memory::font_start + (value * 5)]);
 }

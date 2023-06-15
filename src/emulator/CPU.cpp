@@ -144,7 +144,7 @@ void CPU::opcode9XY0(uint16_t instruction) {
 // sets VX = NN
 void CPU::opcode6XNN(uint16_t instruction) {
     uint16_t register1 = (instruction & 0x0F00) >> 8;
-    uint16_t value = instruction & 0x00FF;
+    uint8_t value = instruction & 0x00FF;
     registers[register1] = value;
 }
 
@@ -193,7 +193,11 @@ void CPU::opcode8XYN(uint16_t instruction) {
                 flag = 1;
             }
             registers[register1] = registers[register2] - registers[register1];
+            for (int i = 0; i < 16; i++) {
+                std::cout << unsigned(registers[i]) << " ";
+            }
             registers[0x0F] = flag;
+            break;
         case 0x6:
             if (super) {
                 registers[register1] = registers[register2];
@@ -297,6 +301,7 @@ void CPU::opcodeFXNN(uint16_t instruction, Memory ram, Display& display) {
         case 0x1E:
             index_register += registers[register1];
             index_register &= 0xFFF;
+            break;
         // decrements PC until a key is pressed
         case 0x0A:
             if (!display.keyIsPressed || display.keyPressed != registers[register1]) {
@@ -310,7 +315,7 @@ void CPU::opcodeFXNN(uint16_t instruction, Memory ram, Display& display) {
         // binary-coded decimal conversion
         case 0x33:
             {
-                uint8_t value = registers[register1];
+                uint8_t value = unsigned(registers[register1]);
                 for (uint8_t iter = 0; iter < 3; iter++) {
                     ram.write((index_register + (2 - iter)), value % 10);
                     value = value / 10;
@@ -325,7 +330,7 @@ void CPU::opcodeFXNN(uint16_t instruction, Memory ram, Display& display) {
                 }
             } else {
                 for (uint8_t reg = 0; reg <= register1; reg++) {
-                    ram.write((index_register), registers[reg]);
+                    ram.write(index_register, registers[reg]);
                     index_register++;
                 }
             }

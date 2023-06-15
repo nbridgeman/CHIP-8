@@ -526,3 +526,83 @@ Parsed CXX implicit link information from above output:
   implicit fwks: []
 
 
+Determining if the include file sys/types.h exists passed with the following output:
+Change Dir: C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/msys64/mingw64/bin/mingw32-make.exe -f Makefile cmTC_aee19/fast && C:/msys64/mingw64/bin/mingw32-make.exe  -f CMakeFiles\cmTC_aee19.dir\build.make CMakeFiles/cmTC_aee19.dir/build
+mingw32-make[1]: Entering directory 'C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_aee19.dir/CheckIncludeFile.c.obj
+C:\msys64\mingw64\bin\gcc.exe    -o CMakeFiles\cmTC_aee19.dir\CheckIncludeFile.c.obj -c C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c
+Linking C executable cmTC_aee19.exe
+"C:\Program Files\CMake\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_aee19.dir\link.txt --verbose=1
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\cmTC_aee19.dir/objects.a
+C:\msys64\mingw64\bin\ar.exe qc CMakeFiles\cmTC_aee19.dir/objects.a @CMakeFiles\cmTC_aee19.dir\objects1.rsp
+C:\msys64\mingw64\bin\gcc.exe -Wl,--whole-archive CMakeFiles\cmTC_aee19.dir/objects.a -Wl,--no-whole-archive -o cmTC_aee19.exe -Wl,--out-implib,libcmTC_aee19.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_aee19.dir\linklibs.rsp
+mingw32-make[1]: Leaving directory 'C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file stdint.h exists passed with the following output:
+Change Dir: C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/msys64/mingw64/bin/mingw32-make.exe -f Makefile cmTC_0064f/fast && C:/msys64/mingw64/bin/mingw32-make.exe  -f CMakeFiles\cmTC_0064f.dir\build.make CMakeFiles/cmTC_0064f.dir/build
+mingw32-make[1]: Entering directory 'C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_0064f.dir/CheckIncludeFile.c.obj
+C:\msys64\mingw64\bin\gcc.exe    -o CMakeFiles\cmTC_0064f.dir\CheckIncludeFile.c.obj -c C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c
+Linking C executable cmTC_0064f.exe
+"C:\Program Files\CMake\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_0064f.dir\link.txt --verbose=1
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\cmTC_0064f.dir/objects.a
+C:\msys64\mingw64\bin\ar.exe qc CMakeFiles\cmTC_0064f.dir/objects.a @CMakeFiles\cmTC_0064f.dir\objects1.rsp
+C:\msys64\mingw64\bin\gcc.exe -Wl,--whole-archive CMakeFiles\cmTC_0064f.dir/objects.a -Wl,--no-whole-archive -o cmTC_0064f.exe -Wl,--out-implib,libcmTC_0064f.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_0064f.dir\linklibs.rsp
+mingw32-make[1]: Leaving directory 'C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file stddef.h exists passed with the following output:
+Change Dir: C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/msys64/mingw64/bin/mingw32-make.exe -f Makefile cmTC_806af/fast && C:/msys64/mingw64/bin/mingw32-make.exe  -f CMakeFiles\cmTC_806af.dir\build.make CMakeFiles/cmTC_806af.dir/build
+mingw32-make[1]: Entering directory 'C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_806af.dir/CheckIncludeFile.c.obj
+C:\msys64\mingw64\bin\gcc.exe    -o CMakeFiles\cmTC_806af.dir\CheckIncludeFile.c.obj -c C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c
+Linking C executable cmTC_806af.exe
+"C:\Program Files\CMake\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_806af.dir\link.txt --verbose=1
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\cmTC_806af.dir/objects.a
+C:\msys64\mingw64\bin\ar.exe qc CMakeFiles\cmTC_806af.dir/objects.a @CMakeFiles\cmTC_806af.dir\objects1.rsp
+C:\msys64\mingw64\bin\gcc.exe -Wl,--whole-archive CMakeFiles\cmTC_806af.dir/objects.a -Wl,--no-whole-archive -o cmTC_806af.exe -Wl,--out-implib,libcmTC_806af.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_806af.dir\linklibs.rsp
+mingw32-make[1]: Leaving directory 'C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/CMakeTmp'
+
+
+
+Determining size of void* passed with the following output:
+Change Dir: C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/msys64/mingw64/bin/mingw32-make.exe -f Makefile cmTC_63fb5/fast && C:/msys64/mingw64/bin/mingw32-make.exe  -f CMakeFiles\cmTC_63fb5.dir\build.make CMakeFiles/cmTC_63fb5.dir/build
+mingw32-make[1]: Entering directory 'C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_63fb5.dir/SIZEOF_VOID_PTR.c.obj
+C:\msys64\mingw64\bin\gcc.exe    -o CMakeFiles\cmTC_63fb5.dir\SIZEOF_VOID_PTR.c.obj -c C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles\CheckTypeSize\SIZEOF_VOID_PTR.c
+Linking C executable cmTC_63fb5.exe
+"C:\Program Files\CMake\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_63fb5.dir\link.txt --verbose=1
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\cmTC_63fb5.dir/objects.a
+C:\msys64\mingw64\bin\ar.exe qc CMakeFiles\cmTC_63fb5.dir/objects.a @CMakeFiles\cmTC_63fb5.dir\objects1.rsp
+C:\msys64\mingw64\bin\gcc.exe -Wl,--whole-archive CMakeFiles\cmTC_63fb5.dir/objects.a -Wl,--no-whole-archive -o cmTC_63fb5.exe -Wl,--out-implib,libcmTC_63fb5.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_63fb5.dir\linklibs.rsp
+mingw32-make[1]: Leaving directory 'C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file dinput.h exists passed with the following output:
+Change Dir: C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/msys64/mingw64/bin/mingw32-make.exe -f Makefile cmTC_49422/fast && C:/msys64/mingw64/bin/mingw32-make.exe  -f CMakeFiles\cmTC_49422.dir\build.make CMakeFiles/cmTC_49422.dir/build
+mingw32-make[1]: Entering directory 'C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_49422.dir/CheckIncludeFile.c.obj
+C:\msys64\mingw64\bin\gcc.exe    -o CMakeFiles\cmTC_49422.dir\CheckIncludeFile.c.obj -c C:\Users\bridg\Documents\Programming\repos\CHIP-8\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c
+Linking C executable cmTC_49422.exe
+"C:\Program Files\CMake\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_49422.dir\link.txt --verbose=1
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\cmTC_49422.dir/objects.a
+C:\msys64\mingw64\bin\ar.exe qc CMakeFiles\cmTC_49422.dir/objects.a @CMakeFiles\cmTC_49422.dir\objects1.rsp
+C:\msys64\mingw64\bin\gcc.exe -Wl,--whole-archive CMakeFiles\cmTC_49422.dir/objects.a -Wl,--no-whole-archive -o cmTC_49422.exe -Wl,--out-implib,libcmTC_49422.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_49422.dir\linklibs.rsp
+mingw32-make[1]: Leaving directory 'C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CMakeFiles/CMakeTmp'
+
+
+

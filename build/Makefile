@@ -64,15 +64,15 @@ CMAKE_BINARY_DIR = C:\Users\bridg\Documents\Programming\repos\CHIP-8\build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target package_source
-package_source:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	"C:\Program Files\CMake\bin\cpack.exe" --config ./CPackSourceConfig.cmake C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CPackSourceConfig.cmake
-.PHONY : package_source
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	"C:\Program Files\CMake\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
 
-# Special rule for the target package_source
-package_source/fast: package_source
-.PHONY : package_source/fast
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+.PHONY : rebuild_cache/fast
 
 # Special rule for the target package
 package: preinstall
@@ -84,15 +84,39 @@ package: preinstall
 package/fast: package
 .PHONY : package/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	"C:\Program Files\CMake\bin\ctest.exe" --force-new-ctest-process $(ARGS)
-.PHONY : test
+# Special rule for the target package_source
+package_source:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
+	"C:\Program Files\CMake\bin\cpack.exe" --config ./CPackSourceConfig.cmake C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/CPackSourceConfig.cmake
+.PHONY : package_source
 
-# Special rule for the target test
-test/fast: test
-.PHONY : test/fast
+# Special rule for the target package_source
+package_source/fast: package_source
+.PHONY : package_source/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	"C:\Program Files\CMake\bin\cmake.exe" -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	"C:\Program Files\CMake\bin\cmake.exe" -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -104,15 +128,26 @@ edit_cache:
 edit_cache/fast: edit_cache
 .PHONY : edit_cache/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	"C:\Program Files\CMake\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\" \"bin\" \"devel\""
+.PHONY : list_install_components
 
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-.PHONY : rebuild_cache/fast
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -146,32 +181,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named ExperimentalBuild
-
-# Build rule for target.
-ExperimentalBuild: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ExperimentalBuild
-.PHONY : ExperimentalBuild
-
-# fast build rule for target.
-ExperimentalBuild/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalBuild.dir\build.make CMakeFiles/ExperimentalBuild.dir/build
-.PHONY : ExperimentalBuild/fast
-
-#=============================================================================
-# Target rules for targets named ExperimentalStart
-
-# Build rule for target.
-ExperimentalStart: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ExperimentalStart
-.PHONY : ExperimentalStart
-
-# fast build rule for target.
-ExperimentalStart/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalStart.dir\build.make CMakeFiles/ExperimentalStart.dir/build
-.PHONY : ExperimentalStart/fast
-
-#=============================================================================
 # Target rules for targets named chip8
 
 # Build rule for target.
@@ -185,342 +194,202 @@ chip8/fast:
 .PHONY : chip8/fast
 
 #=============================================================================
-# Target rules for targets named NightlyMemoryCheck
+# Target rules for targets named sfml-system
 
 # Build rule for target.
-NightlyMemoryCheck: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 NightlyMemoryCheck
-.PHONY : NightlyMemoryCheck
+sfml-system: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 sfml-system
+.PHONY : sfml-system
 
 # fast build rule for target.
-NightlyMemoryCheck/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\NightlyMemoryCheck.dir\build.make CMakeFiles/NightlyMemoryCheck.dir/build
-.PHONY : NightlyMemoryCheck/fast
+sfml-system/fast:
+	$(MAKE) $(MAKESILENT) -f _deps\sfml-build\src\SFML\System\CMakeFiles\sfml-system.dir\build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build
+.PHONY : sfml-system/fast
 
 #=============================================================================
-# Target rules for targets named Experimental
+# Target rules for targets named sfml-main
 
 # Build rule for target.
-Experimental: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Experimental
-.PHONY : Experimental
+sfml-main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 sfml-main
+.PHONY : sfml-main
 
 # fast build rule for target.
-Experimental/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Experimental.dir\build.make CMakeFiles/Experimental.dir/build
-.PHONY : Experimental/fast
+sfml-main/fast:
+	$(MAKE) $(MAKESILENT) -f _deps\sfml-build\src\SFML\Main\CMakeFiles\sfml-main.dir\build.make _deps/sfml-build/src/SFML/Main/CMakeFiles/sfml-main.dir/build
+.PHONY : sfml-main/fast
 
 #=============================================================================
-# Target rules for targets named NightlySubmit
+# Target rules for targets named sfml-window
 
 # Build rule for target.
-NightlySubmit: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 NightlySubmit
-.PHONY : NightlySubmit
+sfml-window: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 sfml-window
+.PHONY : sfml-window
 
 # fast build rule for target.
-NightlySubmit/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\NightlySubmit.dir\build.make CMakeFiles/NightlySubmit.dir/build
-.PHONY : NightlySubmit/fast
+sfml-window/fast:
+	$(MAKE) $(MAKESILENT) -f _deps\sfml-build\src\SFML\Window\CMakeFiles\sfml-window.dir\build.make _deps/sfml-build/src/SFML/Window/CMakeFiles/sfml-window.dir/build
+.PHONY : sfml-window/fast
 
 #=============================================================================
-# Target rules for targets named NightlyBuild
+# Target rules for targets named sfml-network
 
 # Build rule for target.
-NightlyBuild: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 NightlyBuild
-.PHONY : NightlyBuild
+sfml-network: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 sfml-network
+.PHONY : sfml-network
 
 # fast build rule for target.
-NightlyBuild/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\NightlyBuild.dir\build.make CMakeFiles/NightlyBuild.dir/build
-.PHONY : NightlyBuild/fast
+sfml-network/fast:
+	$(MAKE) $(MAKESILENT) -f _deps\sfml-build\src\SFML\Network\CMakeFiles\sfml-network.dir\build.make _deps/sfml-build/src/SFML/Network/CMakeFiles/sfml-network.dir/build
+.PHONY : sfml-network/fast
 
 #=============================================================================
-# Target rules for targets named NightlyConfigure
+# Target rules for targets named sfml-graphics
 
 # Build rule for target.
-NightlyConfigure: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 NightlyConfigure
-.PHONY : NightlyConfigure
+sfml-graphics: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 sfml-graphics
+.PHONY : sfml-graphics
 
 # fast build rule for target.
-NightlyConfigure/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\NightlyConfigure.dir\build.make CMakeFiles/NightlyConfigure.dir/build
-.PHONY : NightlyConfigure/fast
+sfml-graphics/fast:
+	$(MAKE) $(MAKESILENT) -f _deps\sfml-build\src\SFML\Graphics\CMakeFiles\sfml-graphics.dir\build.make _deps/sfml-build/src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/build
+.PHONY : sfml-graphics/fast
 
 #=============================================================================
-# Target rules for targets named NightlyStart
+# Target rules for targets named sfml-audio
 
 # Build rule for target.
-NightlyStart: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 NightlyStart
-.PHONY : NightlyStart
+sfml-audio: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 sfml-audio
+.PHONY : sfml-audio
 
 # fast build rule for target.
-NightlyStart/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\NightlyStart.dir\build.make CMakeFiles/NightlyStart.dir/build
-.PHONY : NightlyStart/fast
+sfml-audio/fast:
+	$(MAKE) $(MAKESILENT) -f _deps\sfml-build\src\SFML\Audio\CMakeFiles\sfml-audio.dir\build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build
+.PHONY : sfml-audio/fast
 
-#=============================================================================
-# Target rules for targets named Continuous
+src/emulator/CPU.obj: src/emulator/CPU.cpp.obj
+.PHONY : src/emulator/CPU.obj
 
-# Build rule for target.
-Continuous: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Continuous
-.PHONY : Continuous
+# target to build an object file
+src/emulator/CPU.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\chip8.dir\build.make CMakeFiles/chip8.dir/src/emulator/CPU.cpp.obj
+.PHONY : src/emulator/CPU.cpp.obj
 
-# fast build rule for target.
-Continuous/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Continuous.dir\build.make CMakeFiles/Continuous.dir/build
-.PHONY : Continuous/fast
+src/emulator/CPU.i: src/emulator/CPU.cpp.i
+.PHONY : src/emulator/CPU.i
 
-#=============================================================================
-# Target rules for targets named NightlyTest
+# target to preprocess a source file
+src/emulator/CPU.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\chip8.dir\build.make CMakeFiles/chip8.dir/src/emulator/CPU.cpp.i
+.PHONY : src/emulator/CPU.cpp.i
 
-# Build rule for target.
-NightlyTest: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 NightlyTest
-.PHONY : NightlyTest
+src/emulator/CPU.s: src/emulator/CPU.cpp.s
+.PHONY : src/emulator/CPU.s
 
-# fast build rule for target.
-NightlyTest/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\NightlyTest.dir\build.make CMakeFiles/NightlyTest.dir/build
-.PHONY : NightlyTest/fast
+# target to generate assembly for a file
+src/emulator/CPU.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\chip8.dir\build.make CMakeFiles/chip8.dir/src/emulator/CPU.cpp.s
+.PHONY : src/emulator/CPU.cpp.s
 
-#=============================================================================
-# Target rules for targets named Nightly
+src/emulator/Display.obj: src/emulator/Display.cpp.obj
+.PHONY : src/emulator/Display.obj
 
-# Build rule for target.
-Nightly: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Nightly
-.PHONY : Nightly
+# target to build an object file
+src/emulator/Display.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\chip8.dir\build.make CMakeFiles/chip8.dir/src/emulator/Display.cpp.obj
+.PHONY : src/emulator/Display.cpp.obj
 
-# fast build rule for target.
-Nightly/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Nightly.dir\build.make CMakeFiles/Nightly.dir/build
-.PHONY : Nightly/fast
+src/emulator/Display.i: src/emulator/Display.cpp.i
+.PHONY : src/emulator/Display.i
 
-#=============================================================================
-# Target rules for targets named NightlyUpdate
+# target to preprocess a source file
+src/emulator/Display.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\chip8.dir\build.make CMakeFiles/chip8.dir/src/emulator/Display.cpp.i
+.PHONY : src/emulator/Display.cpp.i
 
-# Build rule for target.
-NightlyUpdate: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 NightlyUpdate
-.PHONY : NightlyUpdate
+src/emulator/Display.s: src/emulator/Display.cpp.s
+.PHONY : src/emulator/Display.s
 
-# fast build rule for target.
-NightlyUpdate/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\NightlyUpdate.dir\build.make CMakeFiles/NightlyUpdate.dir/build
-.PHONY : NightlyUpdate/fast
+# target to generate assembly for a file
+src/emulator/Display.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\chip8.dir\build.make CMakeFiles/chip8.dir/src/emulator/Display.cpp.s
+.PHONY : src/emulator/Display.cpp.s
 
-#=============================================================================
-# Target rules for targets named NightlyCoverage
+src/emulator/Emulator.obj: src/emulator/Emulator.cpp.obj
+.PHONY : src/emulator/Emulator.obj
 
-# Build rule for target.
-NightlyCoverage: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 NightlyCoverage
-.PHONY : NightlyCoverage
+# target to build an object file
+src/emulator/Emulator.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\chip8.dir\build.make CMakeFiles/chip8.dir/src/emulator/Emulator.cpp.obj
+.PHONY : src/emulator/Emulator.cpp.obj
 
-# fast build rule for target.
-NightlyCoverage/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\NightlyCoverage.dir\build.make CMakeFiles/NightlyCoverage.dir/build
-.PHONY : NightlyCoverage/fast
+src/emulator/Emulator.i: src/emulator/Emulator.cpp.i
+.PHONY : src/emulator/Emulator.i
 
-#=============================================================================
-# Target rules for targets named NightlyMemCheck
+# target to preprocess a source file
+src/emulator/Emulator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\chip8.dir\build.make CMakeFiles/chip8.dir/src/emulator/Emulator.cpp.i
+.PHONY : src/emulator/Emulator.cpp.i
 
-# Build rule for target.
-NightlyMemCheck: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 NightlyMemCheck
-.PHONY : NightlyMemCheck
+src/emulator/Emulator.s: src/emulator/Emulator.cpp.s
+.PHONY : src/emulator/Emulator.s
 
-# fast build rule for target.
-NightlyMemCheck/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\NightlyMemCheck.dir\build.make CMakeFiles/NightlyMemCheck.dir/build
-.PHONY : NightlyMemCheck/fast
+# target to generate assembly for a file
+src/emulator/Emulator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\chip8.dir\build.make CMakeFiles/chip8.dir/src/emulator/Emulator.cpp.s
+.PHONY : src/emulator/Emulator.cpp.s
 
-#=============================================================================
-# Target rules for targets named ExperimentalUpdate
+src/emulator/Memory.obj: src/emulator/Memory.cpp.obj
+.PHONY : src/emulator/Memory.obj
 
-# Build rule for target.
-ExperimentalUpdate: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ExperimentalUpdate
-.PHONY : ExperimentalUpdate
+# target to build an object file
+src/emulator/Memory.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\chip8.dir\build.make CMakeFiles/chip8.dir/src/emulator/Memory.cpp.obj
+.PHONY : src/emulator/Memory.cpp.obj
 
-# fast build rule for target.
-ExperimentalUpdate/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalUpdate.dir\build.make CMakeFiles/ExperimentalUpdate.dir/build
-.PHONY : ExperimentalUpdate/fast
+src/emulator/Memory.i: src/emulator/Memory.cpp.i
+.PHONY : src/emulator/Memory.i
 
-#=============================================================================
-# Target rules for targets named ContinuousMemCheck
+# target to preprocess a source file
+src/emulator/Memory.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\chip8.dir\build.make CMakeFiles/chip8.dir/src/emulator/Memory.cpp.i
+.PHONY : src/emulator/Memory.cpp.i
 
-# Build rule for target.
-ContinuousMemCheck: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ContinuousMemCheck
-.PHONY : ContinuousMemCheck
+src/emulator/Memory.s: src/emulator/Memory.cpp.s
+.PHONY : src/emulator/Memory.s
 
-# fast build rule for target.
-ContinuousMemCheck/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ContinuousMemCheck.dir\build.make CMakeFiles/ContinuousMemCheck.dir/build
-.PHONY : ContinuousMemCheck/fast
+# target to generate assembly for a file
+src/emulator/Memory.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\chip8.dir\build.make CMakeFiles/chip8.dir/src/emulator/Memory.cpp.s
+.PHONY : src/emulator/Memory.cpp.s
 
-#=============================================================================
-# Target rules for targets named ExperimentalConfigure
+src/emulator/Timer.obj: src/emulator/Timer.cpp.obj
+.PHONY : src/emulator/Timer.obj
 
-# Build rule for target.
-ExperimentalConfigure: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ExperimentalConfigure
-.PHONY : ExperimentalConfigure
+# target to build an object file
+src/emulator/Timer.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\chip8.dir\build.make CMakeFiles/chip8.dir/src/emulator/Timer.cpp.obj
+.PHONY : src/emulator/Timer.cpp.obj
 
-# fast build rule for target.
-ExperimentalConfigure/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalConfigure.dir\build.make CMakeFiles/ExperimentalConfigure.dir/build
-.PHONY : ExperimentalConfigure/fast
+src/emulator/Timer.i: src/emulator/Timer.cpp.i
+.PHONY : src/emulator/Timer.i
 
-#=============================================================================
-# Target rules for targets named ExperimentalTest
+# target to preprocess a source file
+src/emulator/Timer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\chip8.dir\build.make CMakeFiles/chip8.dir/src/emulator/Timer.cpp.i
+.PHONY : src/emulator/Timer.cpp.i
 
-# Build rule for target.
-ExperimentalTest: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ExperimentalTest
-.PHONY : ExperimentalTest
+src/emulator/Timer.s: src/emulator/Timer.cpp.s
+.PHONY : src/emulator/Timer.s
 
-# fast build rule for target.
-ExperimentalTest/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalTest.dir\build.make CMakeFiles/ExperimentalTest.dir/build
-.PHONY : ExperimentalTest/fast
-
-#=============================================================================
-# Target rules for targets named ExperimentalCoverage
-
-# Build rule for target.
-ExperimentalCoverage: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ExperimentalCoverage
-.PHONY : ExperimentalCoverage
-
-# fast build rule for target.
-ExperimentalCoverage/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalCoverage.dir\build.make CMakeFiles/ExperimentalCoverage.dir/build
-.PHONY : ExperimentalCoverage/fast
-
-#=============================================================================
-# Target rules for targets named ExperimentalMemCheck
-
-# Build rule for target.
-ExperimentalMemCheck: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ExperimentalMemCheck
-.PHONY : ExperimentalMemCheck
-
-# fast build rule for target.
-ExperimentalMemCheck/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalMemCheck.dir\build.make CMakeFiles/ExperimentalMemCheck.dir/build
-.PHONY : ExperimentalMemCheck/fast
-
-#=============================================================================
-# Target rules for targets named ExperimentalSubmit
-
-# Build rule for target.
-ExperimentalSubmit: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ExperimentalSubmit
-.PHONY : ExperimentalSubmit
-
-# fast build rule for target.
-ExperimentalSubmit/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalSubmit.dir\build.make CMakeFiles/ExperimentalSubmit.dir/build
-.PHONY : ExperimentalSubmit/fast
-
-#=============================================================================
-# Target rules for targets named ContinuousStart
-
-# Build rule for target.
-ContinuousStart: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ContinuousStart
-.PHONY : ContinuousStart
-
-# fast build rule for target.
-ContinuousStart/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ContinuousStart.dir\build.make CMakeFiles/ContinuousStart.dir/build
-.PHONY : ContinuousStart/fast
-
-#=============================================================================
-# Target rules for targets named ContinuousUpdate
-
-# Build rule for target.
-ContinuousUpdate: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ContinuousUpdate
-.PHONY : ContinuousUpdate
-
-# fast build rule for target.
-ContinuousUpdate/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ContinuousUpdate.dir\build.make CMakeFiles/ContinuousUpdate.dir/build
-.PHONY : ContinuousUpdate/fast
-
-#=============================================================================
-# Target rules for targets named ContinuousSubmit
-
-# Build rule for target.
-ContinuousSubmit: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ContinuousSubmit
-.PHONY : ContinuousSubmit
-
-# fast build rule for target.
-ContinuousSubmit/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ContinuousSubmit.dir\build.make CMakeFiles/ContinuousSubmit.dir/build
-.PHONY : ContinuousSubmit/fast
-
-#=============================================================================
-# Target rules for targets named ContinuousConfigure
-
-# Build rule for target.
-ContinuousConfigure: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ContinuousConfigure
-.PHONY : ContinuousConfigure
-
-# fast build rule for target.
-ContinuousConfigure/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ContinuousConfigure.dir\build.make CMakeFiles/ContinuousConfigure.dir/build
-.PHONY : ContinuousConfigure/fast
-
-#=============================================================================
-# Target rules for targets named ContinuousBuild
-
-# Build rule for target.
-ContinuousBuild: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ContinuousBuild
-.PHONY : ContinuousBuild
-
-# fast build rule for target.
-ContinuousBuild/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ContinuousBuild.dir\build.make CMakeFiles/ContinuousBuild.dir/build
-.PHONY : ContinuousBuild/fast
-
-#=============================================================================
-# Target rules for targets named ContinuousTest
-
-# Build rule for target.
-ContinuousTest: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ContinuousTest
-.PHONY : ContinuousTest
-
-# fast build rule for target.
-ContinuousTest/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ContinuousTest.dir\build.make CMakeFiles/ContinuousTest.dir/build
-.PHONY : ContinuousTest/fast
-
-#=============================================================================
-# Target rules for targets named ContinuousCoverage
-
-# Build rule for target.
-ContinuousCoverage: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ContinuousCoverage
-.PHONY : ContinuousCoverage
-
-# fast build rule for target.
-ContinuousCoverage/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ContinuousCoverage.dir\build.make CMakeFiles/ContinuousCoverage.dir/build
-.PHONY : ContinuousCoverage/fast
+# target to generate assembly for a file
+src/emulator/Timer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\chip8.dir\build.make CMakeFiles/chip8.dir/src/emulator/Timer.cpp.s
+.PHONY : src/emulator/Timer.cpp.s
 
 src/main.obj: src/main.cpp.obj
 .PHONY : src/main.obj
@@ -553,39 +422,35 @@ help:
 	@echo ... clean
 	@echo ... depend
 	@echo ... edit_cache
+	@echo ... install
+	@echo ... install/local
+	@echo ... install/strip
+	@echo ... list_install_components
 	@echo ... package
 	@echo ... package_source
 	@echo ... rebuild_cache
-	@echo ... test
-	@echo ... Continuous
-	@echo ... ContinuousBuild
-	@echo ... ContinuousConfigure
-	@echo ... ContinuousCoverage
-	@echo ... ContinuousMemCheck
-	@echo ... ContinuousStart
-	@echo ... ContinuousSubmit
-	@echo ... ContinuousTest
-	@echo ... ContinuousUpdate
-	@echo ... Experimental
-	@echo ... ExperimentalBuild
-	@echo ... ExperimentalConfigure
-	@echo ... ExperimentalCoverage
-	@echo ... ExperimentalMemCheck
-	@echo ... ExperimentalStart
-	@echo ... ExperimentalSubmit
-	@echo ... ExperimentalTest
-	@echo ... ExperimentalUpdate
-	@echo ... Nightly
-	@echo ... NightlyBuild
-	@echo ... NightlyConfigure
-	@echo ... NightlyCoverage
-	@echo ... NightlyMemCheck
-	@echo ... NightlyMemoryCheck
-	@echo ... NightlyStart
-	@echo ... NightlySubmit
-	@echo ... NightlyTest
-	@echo ... NightlyUpdate
 	@echo ... chip8
+	@echo ... sfml-audio
+	@echo ... sfml-graphics
+	@echo ... sfml-main
+	@echo ... sfml-network
+	@echo ... sfml-system
+	@echo ... sfml-window
+	@echo ... src/emulator/CPU.obj
+	@echo ... src/emulator/CPU.i
+	@echo ... src/emulator/CPU.s
+	@echo ... src/emulator/Display.obj
+	@echo ... src/emulator/Display.i
+	@echo ... src/emulator/Display.s
+	@echo ... src/emulator/Emulator.obj
+	@echo ... src/emulator/Emulator.i
+	@echo ... src/emulator/Emulator.s
+	@echo ... src/emulator/Memory.obj
+	@echo ... src/emulator/Memory.i
+	@echo ... src/emulator/Memory.s
+	@echo ... src/emulator/Timer.obj
+	@echo ... src/emulator/Timer.i
+	@echo ... src/emulator/Timer.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s

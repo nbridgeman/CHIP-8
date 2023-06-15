@@ -1,0 +1,9 @@
+C:/Users/bridg/Documents/Programming/repos/CHIP-8/CMakeFiles/chip8.dir
+C:/Users/bridg/Documents/Programming/repos/CHIP-8/CMakeFiles/NightlyMemoryCheck.dir
+C:/Users/bridg/Documents/Programming/repos/CHIP-8/CMakeFiles/Experimental.dir
+C:/Users/bridg/Documents/Programming/repos/CHIP-8/CMakeFiles/Continuous.dir
+C:/Users/bridg/Documents/Programming/repos/CHIP-8/CMakeFiles/Nightly.dir
+C:/Users/bridg/Documents/Programming/repos/CHIP-8/CMakeFiles/PACKAGE.dir
+C:/Users/bridg/Documents/Programming/repos/CHIP-8/CMakeFiles/RUN_TESTS.dir
+C:/Users/bridg/Documents/Programming/repos/CHIP-8/CMakeFiles/ALL_BUILD.dir
+C:/Users/bridg/Documents/Programming/repos/CHIP-8/CMakeFiles/ZERO_CHECK.dir

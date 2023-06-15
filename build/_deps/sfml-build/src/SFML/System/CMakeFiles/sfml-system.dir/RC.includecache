@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-build/src/SFML/System/sfml-system.rc
+winresrc.h
+C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-build/src/SFML/System/winresrc.h
+

@@ -1,12 +1,9 @@
-#include <iostream>
-#include <cstdint>
-#include <chrono>
+#include "./emulator/Emulator.hpp"
 
-// using namespace std;
+int main() {
+   Emulator chip8;
+   chip8.loadRom("../roms/IBMLogo.ch8");
+   chip8.run();
 
-int main(int argc, char** argv){
-    uint8_t test = 43;
-    std::cout << test << std::endl;
-
-    return 0;
+   return 0;
 }

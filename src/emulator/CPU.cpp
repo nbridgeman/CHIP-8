@@ -1,4 +1,4 @@
-#include "../../include/CPU.hpp"
+#include "CPU.hpp"
 
 CPU::CPU() { }
 
@@ -6,16 +6,16 @@ CPU::~CPU() { }
 
 uint16_t CPU::getInstruction(Memory& ram) {
     uint16_t instruction = 0x0000;
-    instruction = ram.read(program_counter) >> 8 | ram.read(program_counter + 1);
+    instruction = ram.read(program_counter) << 8 | ram.read(program_counter + 1);
     program_counter += 2;
     return instruction;
 }
 
-void CPU::decode(uint16_t instruction, Memory& ram) {
+void CPU::decode(uint16_t instruction, Memory& ram, Display& out) {
     uint16_t first_nibble = instruction & 0xF000;
     switch (first_nibble) {
         case 0x0000:
-            opcode00EE(instruction);
+            opcode00EE(instruction, out);
             break;
         case 0x1000:
             opcode1NNN(instruction);
@@ -59,7 +59,7 @@ void CPU::decode(uint16_t instruction, Memory& ram) {
             break;
         case 0xD000:
             // display a sprite
-            opcodeDXYN(instruction);
+            opcodeDXYN(instruction, out, ram);
             break;
         case 0xE000:
             // different cases, mask for last two nibbles and create a switch statement
@@ -75,12 +75,19 @@ void CPU::decode(uint16_t instruction, Memory& ram) {
     }
 }
 
+void CPU::updateTimers() {
+    delay_timer.decrement();
+    sound_timer.decrement();
+}
+
 // If 00EE, exit subroutine. Otherwise do nothing.
-void CPU::opcode00EE(uint16_t instruction) {
+void CPU::opcode00EE(uint16_t instruction, Display& display) {
     uint16_t last_three_nibbles = instruction & 0x0FFF;
     if (last_three_nibbles == 0x00EE) {
         program_counter = addresses.top();
         addresses.pop();
+    } else if (last_three_nibbles == 0x00E0) {
+        display.clear();
     }
 }
 
@@ -221,7 +228,11 @@ void CPU::opcodeCXNN(uint16_t instruction) {
 }
 
 // TODO: display
-void CPU::opcodeDXYN(uint16_t instruction) {
+void CPU::opcodeDXYN(uint16_t instruction, Display& display, Memory& ram) {
+    uint16_t register1 = (instruction & 0x0F00) >> 8;
+    uint16_t register2 = (instruction & 0x00F0) >> 4;
+    uint16_t last_nibble = (instruction & 0x000F);
+    display.draw(registers[register1], registers[register2], last_nibble, ram, index_register);
     return;
 }
 

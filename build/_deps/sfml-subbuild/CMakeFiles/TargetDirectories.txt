@@ -1,0 +1,3 @@
+C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-subbuild/CMakeFiles/sfml-populate.dir
+C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-subbuild/CMakeFiles/edit_cache.dir
+C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-subbuild/CMakeFiles/rebuild_cache.dir

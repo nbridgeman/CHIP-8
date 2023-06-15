@@ -1,1 +1,1 @@
-CMakeFiles/chip8.dir/src/main.cpp.obj
+CMakeFiles/chip8.dir/src/main.cpp.obj CMakeFiles/chip8.dir/src/emulator/Emulator.cpp.obj CMakeFiles/chip8.dir/src/emulator/Display.cpp.obj CMakeFiles/chip8.dir/src/emulator/CPU.cpp.obj CMakeFiles/chip8.dir/src/emulator/Memory.cpp.obj CMakeFiles/chip8.dir/src/emulator/Timer.cpp.obj

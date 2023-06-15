@@ -14,6 +14,10 @@
 # EXTERNAL cache entries
 ########################
 
+//TRUE to build SFML as shared libraries, FALSE to build it as
+// static libraries
+BUILD_SHARED_LIBS:BOOL=TRUE
+
 //Build the testing tree.
 BUILD_TESTING:BOOL=ON
 
@@ -23,7 +27,7 @@ CMAKE_ADDR2LINE:FILEPATH=C:/msys64/mingw64/bin/addr2line.exe
 //Path to a program.
 CMAKE_AR:FILEPATH=C:/msys64/mingw64/bin/ar.exe
 
-//No help, variable specified on the command line.
+//Choose the type of build (Debug or Release)
 CMAKE_BUILD_TYPE:STRING=Debug
 
 //Enable/Disable color output during build.
@@ -111,8 +115,56 @@ CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE
 //Convert GNU import libraries to MS format (requires Visual Studio)
 CMAKE_GNUtoMS:BOOL=OFF
 
+//User executables (bin)
+CMAKE_INSTALL_BINDIR:PATH=bin
+
+//Read-only architecture-independent data (DATAROOTDIR)
+CMAKE_INSTALL_DATADIR:PATH=
+
+//Read-only architecture-independent data root (share)
+CMAKE_INSTALL_DATAROOTDIR:PATH=share
+
+//Documentation root (DATAROOTDIR/doc/PROJECT_NAME)
+CMAKE_INSTALL_DOCDIR:PATH=
+
+//C header files (include)
+CMAKE_INSTALL_INCLUDEDIR:PATH=include
+
+//Info documentation (DATAROOTDIR/info)
+CMAKE_INSTALL_INFODIR:PATH=
+
+//Object code libraries (lib)
+CMAKE_INSTALL_LIBDIR:PATH=lib
+
+//Program executables (libexec)
+CMAKE_INSTALL_LIBEXECDIR:PATH=libexec
+
+//Locale-dependent data (DATAROOTDIR/locale)
+CMAKE_INSTALL_LOCALEDIR:PATH=
+
+//Modifiable single-machine data (var)
+CMAKE_INSTALL_LOCALSTATEDIR:PATH=var
+
+//Man documentation (DATAROOTDIR/man)
+CMAKE_INSTALL_MANDIR:PATH=
+
+//C header files for non-gcc (/usr/include)
+CMAKE_INSTALL_OLDINCLUDEDIR:PATH=/usr/include
+
 //Install path prefix, prepended onto install directories.
 CMAKE_INSTALL_PREFIX:PATH=C:/Program Files (x86)/chip8
+
+//Run-time variable data (LOCALSTATEDIR/run)
+CMAKE_INSTALL_RUNSTATEDIR:PATH=
+
+//System admin executables (sbin)
+CMAKE_INSTALL_SBINDIR:PATH=sbin
+
+//Modifiable architecture-independent data (com)
+CMAKE_INSTALL_SHAREDSTATEDIR:PATH=com
+
+//Read-only single-machine data (etc)
+CMAKE_INSTALL_SYSCONFDIR:PATH=etc
 
 //Path to a program.
 CMAKE_LINKER:FILEPATH=C:/msys64/mingw64/bin/ld.exe
@@ -148,6 +200,9 @@ CMAKE_OBJCOPY:FILEPATH=C:/msys64/mingw64/bin/objcopy.exe
 
 //Path to a program.
 CMAKE_OBJDUMP:FILEPATH=C:/msys64/mingw64/bin/objdump.exe
+
+//macOS architecture to build; 64-bit is expected
+CMAKE_OSX_ARCHITECTURES:STRING=x86_64
 
 //Value Computed by CMake
 CMAKE_PROJECT_DESCRIPTION:STATIC=
@@ -219,10 +274,10 @@ CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
 //If set, runtime paths are not added when installing shared libraries,
 // but are added when building.
-CMAKE_SKIP_INSTALL_RPATH:BOOL=NO
+CMAKE_SKIP_INSTALL_RPATH:BOOL=OFF
 
 //If set, runtime paths are not added when using shared libraries.
-CMAKE_SKIP_RPATH:BOOL=NO
+CMAKE_SKIP_RPATH:BOOL=OFF
 
 //Flags used by the linker during the creation of static libraries
 // during all build types.
@@ -251,7 +306,7 @@ CMAKE_STRIP:FILEPATH=C:/msys64/mingw64/bin/strip.exe
 // .SILENT directive, and all commands will be echoed to the console
 // during the make.  This is useful for debugging only. With Visual
 // Studio IDE projects all commands are done without /nologo.
-CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
+CMAKE_VERBOSE_MAKEFILE:BOOL=OFF
 
 //Path to the coverage program that CTest uses for performing coverage
 // inspection
@@ -293,8 +348,46 @@ CTEST_SUBMIT_RETRY_DELAY:STRING=5
 //Maximum time allowed before CTest will kill the test.
 DART_TESTING_TIMEOUT:STRING=1500
 
+//Directory under which to collect all populated content
+FETCHCONTENT_BASE_DIR:PATH=C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps
+
+//Disables all attempts to download or update content and assumes
+// source dirs already exist
+FETCHCONTENT_FULLY_DISCONNECTED:BOOL=OFF
+
+//Enables QUIET option for all content population
+FETCHCONTENT_QUIET:BOOL=ON
+
+//When not empty, overrides where to find pre-populated content
+// for SFML
+FETCHCONTENT_SOURCE_DIR_SFML:PATH=
+
+//Enables UPDATE_DISCONNECTED behavior for all content population
+FETCHCONTENT_UPDATES_DISCONNECTED:BOOL=OFF
+
+//Enables UPDATE_DISCONNECTED behavior just for population of SFML
+FETCHCONTENT_UPDATES_DISCONNECTED_SFML:BOOL=OFF
+
+//Path to a file.
+FLAC_INCLUDE_DIR:PATH=C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/extlibs/headers
+
+//Path to a library.
+FLAC_LIBRARY:FILEPATH=C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/extlibs/libs-mingw/x64/libFLAC.a
+
+//Path to a file.
+FREETYPE_INCLUDE_DIR_freetype2:PATH=C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/extlibs/headers/freetype2
+
+//Path to a file.
+FREETYPE_INCLUDE_DIR_ft2build:PATH=C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/extlibs/headers/freetype2
+
+//Path to a library.
+FREETYPE_LIBRARY:FILEPATH=C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/extlibs/libs-mingw/x64/libfreetype.a
+
 //Path to a program.
 GITCOMMAND:FILEPATH=C:/Program Files/Git/cmd/git.exe
+
+//Git command line client
+GIT_EXECUTABLE:FILEPATH=C:/Program Files/Git/cmd/git.exe
 
 //Command to build the project
 MAKECOMMAND:STRING=C:/Program\ Files/CMake/bin/cmake.exe --build . --config "${CTEST_CONFIGURATION_TYPE}" -- -i
@@ -305,8 +398,106 @@ MEMORYCHECK_COMMAND:FILEPATH=C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/
 //File that contains suppressions for the memory checker
 MEMORYCHECK_SUPPRESSIONS_FILE:FILEPATH=
 
+//Path to a file.
+OGG_INCLUDE_DIR:PATH=C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/extlibs/headers
+
+//Path to a library.
+OGG_LIBRARY:FILEPATH=C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/extlibs/libs-mingw/x64/libogg.a
+
+//Path to a file.
+OPENAL_INCLUDE_DIR:PATH=C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/extlibs/headers/AL
+
+//Path to a library.
+OPENAL_LIBRARY:FILEPATH=C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/extlibs/libs-mingw/x64/libopenal32.a
+
+//OpenGL library for win32
+OPENGL_gl_LIBRARY:STRING=opengl32
+
+//GLU library for win32
+OPENGL_glu_LIBRARY:STRING=glu32
+
+//Value Computed by CMake
+SDL2Test_BINARY_DIR:STATIC=C:/Users/bridg/Documents/Programming/repos/CHIP-8/build
+
+//Value Computed by CMake
+SDL2Test_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+SDL2Test_SOURCE_DIR:STATIC=C:/Users/bridg/Documents/Programming/repos/CHIP-8
+
+//The directory containing a CMake configuration file for SDL2.
+SDL2_DIR:PATH=SDL2_DIR-NOTFOUND
+
+//Value Computed by CMake
+SFML_BINARY_DIR:STATIC=C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-build
+
+//TRUE to build SFML's Audio module.
+SFML_BUILD_AUDIO:BOOL=TRUE
+
+//TRUE to generate the API documentation, FALSE to ignore it
+SFML_BUILD_DOC:BOOL=FALSE
+
+//TRUE to build the SFML examples, FALSE to ignore them
+SFML_BUILD_EXAMPLES:BOOL=FALSE
+
+//TRUE to build SFML's Graphics module.
+SFML_BUILD_GRAPHICS:BOOL=TRUE
+
+//TRUE to build SFML's Network module.
+SFML_BUILD_NETWORK:BOOL=TRUE
+
+//TRUE to build the SFML test suite, FALSE to ignore it
+SFML_BUILD_TEST_SUITE:BOOL=FALSE
+
+//TRUE to build SFML's Window module. This setting is ignored,
+// if the graphics module is built.
+SFML_BUILD_WINDOW:BOOL=TRUE
+
+//External libraries (FLAC, Freetype, Vorbis, ...) installation
+// directory
+SFML_DEPENDENCIES_INSTALL_PREFIX:PATH=.
+
+//TRUE to automatically install pkg-config files so other projects
+// can find SFML
+SFML_INSTALL_PKGCONFIG_FILES:BOOL=FALSE
+
+//Value Computed by CMake
+SFML_IS_TOP_LEVEL:STATIC=OFF
+
+//Prefix installation path for miscellaneous files
+SFML_MISC_INSTALL_PREFIX:PATH=.
+
+//TRUE to use an OpenGL ES implementation, FALSE to use a desktop
+// OpenGL implementation
+SFML_OPENGL_ES:BOOL=0
+
+//Value Computed by CMake
+SFML_SOURCE_DIR:STATIC=C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src
+
+//TRUE to statically link to the standard libraries, FALSE to use
+// them as DLLs
+SFML_USE_STATIC_STD_LIBS:BOOL=FALSE
+
+//TRUE to use system dependencies, FALSE to use the bundled ones.
+SFML_USE_SYSTEM_DEPS:BOOL=FALSE
+
 //Name of the computer/site where compile is being run
 SITE:STRING=DESKTOP-E4O26RM
+
+//Path to a library.
+VORBISENC_LIBRARY:FILEPATH=C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/extlibs/libs-mingw/x64/libvorbisenc.a
+
+//Path to a library.
+VORBISFILE_LIBRARY:FILEPATH=C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/extlibs/libs-mingw/x64/libvorbisfile.a
+
+//Path to a file.
+VORBIS_INCLUDE_DIR:PATH=C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/extlibs/headers
+
+//Path to a library.
+VORBIS_LIBRARY:FILEPATH=C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/extlibs/libs-mingw/x64/libvorbis.a
+
+//Treat compiler warnings as errors
+WARNINGS_AS_ERRORS:BOOL=ON
 
 //Value Computed by CMake
 chip8_BINARY_DIR:STATIC=C:/Users/bridg/Documents/Programming/repos/CHIP-8/build
@@ -316,6 +507,21 @@ chip8_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 chip8_SOURCE_DIR:STATIC=C:/Users/bridg/Documents/Programming/repos/CHIP-8
+
+//Dependencies for the target
+sfml-audio_LIB_DEPENDS:STATIC=general;sfml-system;
+
+//Dependencies for the target
+sfml-graphics_LIB_DEPENDS:STATIC=general;sfml-window;
+
+//Dependencies for the target
+sfml-network_LIB_DEPENDS:STATIC=general;sfml-system;general;ws2_32;
+
+//Dependencies for the target
+sfml-system_LIB_DEPENDS:STATIC=general;winmm;
+
+//Dependencies for the target
+sfml-window_LIB_DEPENDS:STATIC=general;sfml-system;general;winmm;general;gdi32;
 
 
 ########################
@@ -340,8 +546,6 @@ CMAKE_COLOR_MAKEFILE-ADVANCED:INTERNAL=1
 CMAKE_COMMAND:INTERNAL=C:/Program Files/CMake/bin/cmake.exe
 //Path to cpack program executable.
 CMAKE_CPACK_COMMAND:INTERNAL=C:/Program Files/CMake/bin/cpack.exe
-//ADVANCED property for variable: CMAKE_CTEST_COMMAND
-CMAKE_CTEST_COMMAND-ADVANCED:INTERNAL=1
 //Path to ctest program executable.
 CMAKE_CTEST_COMMAND:INTERNAL=C:/Program Files/CMake/bin/ctest.exe
 //ADVANCED property for variable: CMAKE_CXX_COMPILER
@@ -409,6 +613,38 @@ CMAKE_GENERATOR_TOOLSET:INTERNAL=
 //Source directory with the top level CMakeLists.txt file for this
 // project
 CMAKE_HOME_DIRECTORY:INTERNAL=C:/Users/bridg/Documents/Programming/repos/CHIP-8
+//ADVANCED property for variable: CMAKE_INSTALL_BINDIR
+CMAKE_INSTALL_BINDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_DATADIR
+CMAKE_INSTALL_DATADIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_DATAROOTDIR
+CMAKE_INSTALL_DATAROOTDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_DOCDIR
+CMAKE_INSTALL_DOCDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_INCLUDEDIR
+CMAKE_INSTALL_INCLUDEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_INFODIR
+CMAKE_INSTALL_INFODIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_LIBDIR
+CMAKE_INSTALL_LIBDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_LIBEXECDIR
+CMAKE_INSTALL_LIBEXECDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_LOCALEDIR
+CMAKE_INSTALL_LOCALEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_LOCALSTATEDIR
+CMAKE_INSTALL_LOCALSTATEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_MANDIR
+CMAKE_INSTALL_MANDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_OLDINCLUDEDIR
+CMAKE_INSTALL_OLDINCLUDEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_RUNSTATEDIR
+CMAKE_INSTALL_RUNSTATEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_SBINDIR
+CMAKE_INSTALL_SBINDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_SHAREDSTATEDIR
+CMAKE_INSTALL_SHAREDSTATEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_SYSCONFDIR
+CMAKE_INSTALL_SYSCONFDIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_LINKER
 CMAKE_LINKER-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MAKE_PROGRAM
@@ -426,7 +662,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=9
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -506,14 +742,68 @@ CTEST_SUBMIT_RETRY_COUNT-ADVANCED:INTERNAL=1
 CTEST_SUBMIT_RETRY_DELAY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: DART_TESTING_TIMEOUT
 DART_TESTING_TIMEOUT-ADVANCED:INTERNAL=1
+//Have include dinput.h
+DINPUT_H_FOUND:INTERNAL=1
+//Details about finding FLAC
+FIND_PACKAGE_MESSAGE_DETAILS_FLAC:INTERNAL=[C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/extlibs/libs-mingw/x64/libFLAC.a][C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/extlibs/headers][v()]
+//Details about finding OpenAL
+FIND_PACKAGE_MESSAGE_DETAILS_OpenAL:INTERNAL=[C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/extlibs/libs-mingw/x64/libopenal32.a][C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/extlibs/headers/AL][v()]
+//Details about finding OpenGL
+FIND_PACKAGE_MESSAGE_DETAILS_OpenGL:INTERNAL=[opengl32][c ][v()]
+//Details about finding VORBIS
+FIND_PACKAGE_MESSAGE_DETAILS_VORBIS:INTERNAL=[C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/extlibs/libs-mingw/x64/libvorbisenc.a;C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/extlibs/libs-mingw/x64/libvorbisfile.a;C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/extlibs/libs-mingw/x64/libvorbis.a;C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/extlibs/libs-mingw/x64/libogg.a][C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/extlibs/headers][C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/extlibs/headers][v()]
+//ADVANCED property for variable: FLAC_INCLUDE_DIR
+FLAC_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: FLAC_LIBRARY
+FLAC_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: FREETYPE_INCLUDE_DIR_freetype2
+FREETYPE_INCLUDE_DIR_freetype2-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: FREETYPE_INCLUDE_DIR_ft2build
+FREETYPE_INCLUDE_DIR_ft2build-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: FREETYPE_LIBRARY
+FREETYPE_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: GITCOMMAND
 GITCOMMAND-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: GIT_EXECUTABLE
+GIT_EXECUTABLE-ADVANCED:INTERNAL=1
+//Result of TRY_COMPILE
+HAVE_SIZEOF_VOID_PTR:INTERNAL=TRUE
+//Have include stddef.h
+HAVE_STDDEF_H:INTERNAL=1
+//Have include stdint.h
+HAVE_STDINT_H:INTERNAL=1
+//Have include sys/types.h
+HAVE_SYS_TYPES_H:INTERNAL=1
 //ADVANCED property for variable: MAKECOMMAND
 MAKECOMMAND-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: MEMORYCHECK_COMMAND
 MEMORYCHECK_COMMAND-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: MEMORYCHECK_SUPPRESSIONS_FILE
 MEMORYCHECK_SUPPRESSIONS_FILE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OGG_INCLUDE_DIR
+OGG_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OGG_LIBRARY
+OGG_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OPENAL_INCLUDE_DIR
+OPENAL_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OPENAL_LIBRARY
+OPENAL_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OPENGL_gl_LIBRARY
+OPENGL_gl_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OPENGL_glu_LIBRARY
+OPENGL_glu_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: SITE
 SITE-ADVANCED:INTERNAL=1
+//CHECK_TYPE_SIZE: sizeof(void*)
+SIZEOF_VOID_PTR:INTERNAL=8
+//ADVANCED property for variable: VORBISENC_LIBRARY
+VORBISENC_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: VORBISFILE_LIBRARY
+VORBISFILE_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: VORBIS_INCLUDE_DIR
+VORBIS_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: VORBIS_LIBRARY
+VORBIS_LIBRARY-ADVANCED:INTERNAL=1
+//CMAKE_INSTALL_PREFIX during last run
+_GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=C:/Program Files (x86)/chip8
 

@@ -160,6 +160,7 @@ void CPU::opcode8XYN(uint16_t instruction) {
     uint16_t register1 = (instruction & 0x0F00) >> 8;
     uint16_t register2 = (instruction & 0x00F0) >> 4;
     uint16_t last_nibble = (instruction & 0x000F);
+    uint8_t flag = 0;
     switch(last_nibble) {
         case 0x0:
             registers[register1] = registers[register2];
@@ -175,48 +176,43 @@ void CPU::opcode8XYN(uint16_t instruction) {
             break;
         case 0x4:
             if (unsigned(registers[register1]) + unsigned(registers[register2] > 255)) {
-                registers[0x0F] = 1;
-            } else {
-                registers[0x0F] = 0;
+                flag = 1;
             }
             registers[register1] = registers[register1] + registers[register2];
+            registers[0x0F] = flag;
             break;
         case 0x5:
             if (registers[register1] > registers[register2]) {
-                registers[0x0F] = 1;
-            } else {
-                registers[0x0F] = 0;
+                flag = 1;
             }
             registers[register1] = registers[register1] - registers[register2];
+            registers[0x0F] = flag;
             break;
         case 0x7:
             if (registers[register2] > registers[register1]) {
-                registers[0x0F] = 1;
-            } else {
-                registers[0x0F] = 0;
+                flag = 1;
             }
             registers[register1] = registers[register2] - registers[register1];
+            registers[0x0F] = flag;
         case 0x6:
             if (super) {
                 registers[register1] = registers[register2];
             }
             if (registers[register1] % 2 != 0) {
-                registers[0x0F] = 1;
-            } else {
-                registers[0x0F] = 0;
+                flag = 1;
             }
             registers[register1] = registers[register1] >> 1;
+            registers[0x0F] = flag;
             break;
         case 0xE:
             if (super) {
                 registers[register1] = registers[register2];
             }
             if (registers[register1] >= 128) {
-                registers[0x0F] = 1;
-            } else {
-                registers[0x0F] = 0;
+                flag = 1;
             }
             registers[register1] = registers[register1] << 1;
+            registers[0x0F] = flag;
             break;
         default:
             std::cout << "[Opcode] Opcode " << std::hex << unsigned(instruction) << " is not a valid opcode." << std::endl;
@@ -242,7 +238,7 @@ void CPU::opcodeBNNN(uint16_t instruction) {
             program_counter = new_address;
         }
     } else {
-        program_counter = last_three_nibbles;
+        program_counter = last_three_nibbles + registers[0];
     }
 }
 
@@ -251,7 +247,7 @@ void CPU::opcodeCXNN(uint16_t instruction) {
     uint16_t register1 = (instruction & 0x0F00) >> 8;
     uint16_t value = instruction & 0x00FF;
     srand(time(0));
-    uint8_t rand_value = rand() % 255;
+    uint8_t rand_value = rand() % 256;
     registers[register1] = rand_value && value;
     return;
 }
@@ -303,7 +299,7 @@ void CPU::opcodeFXNN(uint16_t instruction, Memory ram, Display& display) {
             index_register &= 0xFFF;
         // decrements PC until a key is pressed
         case 0x0A:
-            if (!display.keyIsPressed || display.keyPressed == registers[register1]) {
+            if (!display.keyIsPressed || display.keyPressed != registers[register1]) {
                 program_counter -= 2;
             }
             break;
@@ -323,14 +319,28 @@ void CPU::opcodeFXNN(uint16_t instruction, Memory ram, Display& display) {
             }
         // Store memory
         case 0x55:
-            for (uint8_t reg = 0; reg <= register1; reg++) {
-                ram.write((index_register + reg), registers[reg]);
+            if (super) {
+                for (uint8_t reg = 0; reg <= register1; reg++) {
+                    ram.write((index_register + reg), registers[reg]);
+                }
+            } else {
+                for (uint8_t reg = 0; reg <= register1; reg++) {
+                    ram.write((index_register), registers[reg]);
+                    index_register++;
+                }
             }
             break;
         // Load memory
         case 0x65:
-            for (uint8_t reg = 0; reg <= register1; reg++) {
-                registers[reg] = ram.read(index_register + reg);
+            if (super) {
+                for (uint8_t reg = 0; reg <= register1; reg++) {
+                    registers[reg] = ram.read(index_register + reg);
+                }
+            } else {
+                for (uint8_t reg = 0; reg <= register1; reg++) {
+                    registers[reg] = ram.read(index_register);
+                    index_register++;
+                }
             }
             break;
         default:

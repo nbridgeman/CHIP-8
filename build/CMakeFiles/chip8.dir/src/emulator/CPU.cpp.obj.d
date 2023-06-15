@@ -247,4 +247,8 @@ CMakeFiles/chip8.dir/src/emulator/CPU.cpp.obj: \
  C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/include/SFML/Graphics/Glsl.inl \
  C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/include/SFML/Graphics/Sprite.hpp \
  C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/include/SFML/Graphics/Text.hpp \
- C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/include/SFML/Graphics/VertexBuffer.hpp
+ C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src/include/SFML/Graphics/VertexBuffer.hpp \
+ C:/msys64/mingw64/include/c++/12.2.0/iomanip \
+ C:/msys64/mingw64/include/c++/12.2.0/bits/quoted_string.h \
+ C:/msys64/mingw64/include/c++/12.2.0/sstream \
+ C:/msys64/mingw64/include/c++/12.2.0/bits/sstream.tcc

@@ -1,4 +1,5 @@
 #include "CPU.hpp"
+#include <iomanip>
 
 CPU::CPU() { }
 
@@ -8,6 +9,7 @@ uint16_t CPU::getInstruction(Memory& ram) {
     uint16_t instruction = 0x0000;
     instruction = ram.read(program_counter) << 8 | ram.read(program_counter + 1);
     program_counter += 2;
+    // std::cout << std::hex << instruction << std::endl;
     return instruction;
 }
 
@@ -63,14 +65,14 @@ void CPU::decode(uint16_t instruction, Memory& ram, Display& out) {
             break;
         case 0xE000:
             // different cases, mask for last two nibbles and create a switch statement
-            opcodeEXNN(instruction);
+            opcodeEXNN(instruction, out);
             break;
         case 0xF000:
             // lot of different cases, mask for only nibble 3 and 4 and make a switch statement
-            opcodeFXNN(instruction, ram);
+            opcodeFXNN(instruction, ram, out);
             break;
         default:
-            std::cout << "[Opcode] Opcode " << instruction << " is not a valid opcode." << std::endl;
+            std::cout << "[Opcode] Opcode " << std::hex << unsigned(instruction) << " is not a valid opcode." << std::endl;
             break;
     }
 }
@@ -99,7 +101,7 @@ void CPU::opcode1NNN(uint16_t instruction) {
 // push address onto stack, enter subroutine
 void CPU::opcode2NNN(uint16_t instruction) {
     uint16_t last_three_nibbles = instruction & 0x0FFF;
-    addresses.push(last_three_nibbles);
+    addresses.push(program_counter);
     program_counter = last_three_nibbles;
 }
 
@@ -172,30 +174,52 @@ void CPU::opcode8XYN(uint16_t instruction) {
             registers[register1] = registers[register1] ^ registers[register2];
             break;
         case 0x4:
+            if (unsigned(registers[register1]) + unsigned(registers[register2] > 255)) {
+                registers[0x0F] = 1;
+            } else {
+                registers[0x0F] = 0;
+            }
             registers[register1] = registers[register1] + registers[register2];
-            // carry flag logic here
             break;
         case 0x5:
+            if (registers[register1] > registers[register2]) {
+                registers[0x0F] = 1;
+            } else {
+                registers[0x0F] = 0;
+            }
             registers[register1] = registers[register1] - registers[register2];
             break;
         case 0x7:
-            registers[register2] = registers[register2] - registers[register1];
+            if (registers[register2] > registers[register1]) {
+                registers[0x0F] = 1;
+            } else {
+                registers[0x0F] = 0;
+            }
+            registers[register1] = registers[register2] - registers[register1];
         case 0x6:
             if (super) {
                 registers[register1] = registers[register2];
             }
+            if (registers[register1] % 2 != 0) {
+                registers[0x0F] = 1;
+            } else {
+                registers[0x0F] = 0;
+            }
             registers[register1] = registers[register1] >> 1;
-            // flag logic
             break;
         case 0xE:
             if (super) {
                 registers[register1] = registers[register2];
             }
+            if (registers[register1] >= 128) {
+                registers[0x0F] = 1;
+            } else {
+                registers[0x0F] = 0;
+            }
             registers[register1] = registers[register1] << 1;
-            // flag logic
             break;
         default:
-            std::cout << "[Opcode] Opcode " << instruction << " is not a valid opcode." << std::endl;
+            std::cout << "[Opcode] Opcode " << std::hex << unsigned(instruction) << " is not a valid opcode." << std::endl;
             break;
     }
 }
@@ -222,27 +246,42 @@ void CPU::opcodeBNNN(uint16_t instruction) {
     }
 }
 
-// TODO: random
+// Generates a random numbers, ands it with NN, and stores in register X
 void CPU::opcodeCXNN(uint16_t instruction) {
+    uint16_t register1 = (instruction & 0x0F00) >> 8;
+    uint16_t value = instruction & 0x00FF;
+    srand(time(0));
+    uint8_t rand_value = rand() % 255;
+    registers[register1] = rand_value && value;
     return;
 }
 
-// TODO: display
+// Update display with sprite found at index register
 void CPU::opcodeDXYN(uint16_t instruction, Display& display, Memory& ram) {
     uint16_t register1 = (instruction & 0x0F00) >> 8;
     uint16_t register2 = (instruction & 0x00F0) >> 4;
     uint16_t last_nibble = (instruction & 0x000F);
-    display.draw(registers[register1], registers[register2], last_nibble, ram, index_register);
+    registers[0x0F] = display.draw(registers[register1], registers[register2], last_nibble, ram, index_register);
     return;
 }
 
-// TODO: Skip if
-void CPU::opcodeEXNN(uint16_t instruction) {
-
+// Skip if key is/is not pressed
+void CPU::opcodeEXNN(uint16_t instruction, Display& display) {
+    uint16_t register1 = (instruction & 0x0F00) >> 8;
+    uint16_t operation = instruction & 0x00FF;
+    if (operation == 0x009E) {
+        if (display.keyIsPressed && display.keyPressed == registers[register1]) {
+            program_counter += 2;
+        }
+    } else if (operation == 0x00A1) {
+        if (display.keyIsPressed && display.keyPressed != registers[register1]) {
+            program_counter += 2;
+        }
+    }
 }
 
 // Timers and others
-void CPU::opcodeFXNN(uint16_t instruction, Memory ram) {
+void CPU::opcodeFXNN(uint16_t instruction, Memory ram, Display& display) {
     uint16_t register1 = (instruction & 0x0F00) >> 8;
     uint16_t operation = instruction & 0x00FF;
     switch (operation) {
@@ -258,27 +297,44 @@ void CPU::opcodeFXNN(uint16_t instruction, Memory ram) {
         case 0x18:
             sound_timer.write(registers[register1]);
             break;
-        // add register to incex register
+        // add register to index register
         case 0x1E:
             index_register += registers[register1];
-        // TODO: decrements PC until a key is pressed
+            index_register &= 0xFFF;
+        // decrements PC until a key is pressed
         case 0x0A:
+            if (!display.keyIsPressed || display.keyPressed == registers[register1]) {
+                program_counter -= 2;
+            }
             break;
         // gets the location of font character
         case 0x29:
             index_register = ram.getCharacter(registers[register1]);
             break;
-        // TODO: binary-coded decimal conversion
+        // binary-coded decimal conversion
         case 0x33:
-            break;
-        // TODO: Store memory
+            {
+                uint8_t value = registers[register1];
+                for (uint8_t iter = 0; iter < 3; iter++) {
+                    ram.write((index_register + (2 - iter)), value % 10);
+                    value = value / 10;
+                }
+                break;
+            }
+        // Store memory
         case 0x55:
+            for (uint8_t reg = 0; reg <= register1; reg++) {
+                ram.write((index_register + reg), registers[reg]);
+            }
             break;
-        // TODO: Load memory
+        // Load memory
         case 0x65:
+            for (uint8_t reg = 0; reg <= register1; reg++) {
+                registers[reg] = ram.read(index_register + reg);
+            }
             break;
         default:
-            std::cout << "[Opcode] Opcode " << instruction << " is not a valid opcode." << std::endl;
+            std::cout << "[Opcode] Opcode " << std::hex << unsigned(instruction) << " is not a valid opcode." << std::endl;
             break;
     }
 }

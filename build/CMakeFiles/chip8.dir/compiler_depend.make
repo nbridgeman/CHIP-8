@@ -255,7 +255,11 @@ CMakeFiles/chip8.dir/src/emulator/CPU.cpp.obj: ../src/emulator/CPU.cpp \
   _deps/sfml-src/include/SFML/Graphics/Glsl.inl \
   _deps/sfml-src/include/SFML/Graphics/Sprite.hpp \
   _deps/sfml-src/include/SFML/Graphics/Text.hpp \
-  _deps/sfml-src/include/SFML/Graphics/VertexBuffer.hpp
+  _deps/sfml-src/include/SFML/Graphics/VertexBuffer.hpp \
+  C:/msys64/mingw64/include/c++/12.2.0/iomanip \
+  C:/msys64/mingw64/include/c++/12.2.0/bits/quoted_string.h \
+  C:/msys64/mingw64/include/c++/12.2.0/sstream \
+  C:/msys64/mingw64/include/c++/12.2.0/bits/sstream.tcc
 
 CMakeFiles/chip8.dir/src/emulator/Display.cpp.obj: ../src/emulator/Display.cpp \
   ../src/emulator/Display.hpp \
@@ -1337,6 +1341,8 @@ C:/msys64/mingw64/include/c++/12.2.0/debug/assertions.h:
 
 C:/msys64/mingw64/include/c++/12.2.0/debug/debug.h:
 
+C:/msys64/mingw64/include/c++/12.2.0/bits/quoted_string.h:
+
 _deps/sfml-src/include/SFML/System/Export.hpp:
 
 C:/msys64/mingw64/include/c++/12.2.0/bits/ptr_traits.h:
@@ -1348,6 +1354,8 @@ C:/msys64/mingw64/include/c++/12.2.0/bits/stl_tree.h:
 C:/msys64/mingw64/include/c++/12.2.0/ext/alloc_traits.h:
 
 C:/msys64/mingw64/include/c++/12.2.0/x86_64-w64-mingw32/bits/c++allocator.h:
+
+C:/msys64/mingw64/include/c++/12.2.0/bits/sstream.tcc:
 
 C:/msys64/mingw64/include/c++/12.2.0/bits/locale_facets.h:
 
@@ -1609,6 +1617,8 @@ C:/msys64/mingw64/include/c++/12.2.0/x86_64-w64-mingw32/bits/time_members.h:
 
 C:/msys64/mingw64/include/c++/12.2.0/x86_64-w64-mingw32/bits/messages_members.h:
 
+C:/msys64/mingw64/include/c++/12.2.0/sstream:
+
 C:/msys64/mingw64/include/c++/12.2.0/bits/codecvt.h:
 
 C:/msys64/mingw64/include/c++/12.2.0/bits/locale_facets_nonio.tcc:
@@ -1718,6 +1728,8 @@ _deps/sfml-src/include/SFML/Graphics/View.hpp:
 _deps/sfml-src/include/SFML/Graphics/RenderTexture.hpp:
 
 _deps/sfml-src/include/SFML/Graphics/RenderWindow.hpp:
+
+C:/msys64/mingw64/include/c++/12.2.0/iomanip:
 
 ../src/emulator/Display.cpp:
 

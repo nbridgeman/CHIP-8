@@ -26,7 +26,7 @@ class CPU {
         bool super;
 
     private:
-        void opcode00EE(uint16_t instruction, Display& displays);
+        void opcode00EE(uint16_t instruction, Display& display);
         void opcode1NNN(uint16_t instruction);
         void opcode2NNN(uint16_t instruction);
         void opcode3XNN(uint16_t instruction);
@@ -40,6 +40,6 @@ class CPU {
         void opcodeBNNN(uint16_t instruction);
         void opcodeCXNN(uint16_t instruction);
         void opcodeDXYN(uint16_t instruction, Display& display, Memory& ram);
-        void opcodeEXNN(uint16_t instruction);
-        void opcodeFXNN(uint16_t instruction, Memory ram);
+        void opcodeEXNN(uint16_t instruction, Display& display);
+        void opcodeFXNN(uint16_t instruction, Memory ram, Display& display);
 };

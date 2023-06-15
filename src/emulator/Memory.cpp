@@ -39,7 +39,7 @@ void Memory::loadFontSet() {
 const uint8_t Memory::read(uint16_t addr) {
     if (addr > Memory::size) {
         // TODO: Turn addr into a hex before printing.
-        std::cout << "[Memory] Read Address " << unsigned(addr) << " is out of range." << std::endl;
+        std::cout << "[Memory] Read Address " << std::hex << unsigned(addr) << " is out of range." << std::endl;
         return 0x00;
     } 
     return mem[addr];
@@ -48,7 +48,7 @@ const uint8_t Memory::read(uint16_t addr) {
 void Memory::write(uint16_t addr, uint8_t value) {
     if (addr > Memory::size) {
         // TODO: Turn addr into a hex before printing.
-        std::cout << "[Memory] Write Address " << unsigned(addr) << " is out of range." << std::endl;
+        std::cout << "[Memory] Write Address " << std::hex << unsigned(addr) << " is out of range." << std::endl;
         return;
     }
     mem[addr] = value;

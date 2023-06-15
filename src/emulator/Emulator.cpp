@@ -10,15 +10,25 @@ Emulator::~Emulator() {
 
 void Emulator::loadRom(std::string fileName) {
     ram.init();
-    std::ifstream fs(fileName);
-    uint8_t op = fs.get();
-    uint16_t addr = ram.program_start;
-    while(fs && addr < ram.size) {
-        ram.write(addr, op);
-        addr++;
-        op = fs.get();
+
+    std::streampos size;
+    char * memblock;
+
+    std::ifstream file (fileName, std::ios::in|std::ios::binary|std::ios::ate);
+    if (file.is_open()) {
+        size = file.tellg();
+        memblock = new char[size];
+        file.seekg(0, std::ios::beg);
+        file.read(memblock, size);
+        file.close();
+
+        for (int i = 0; i < size; i++) {
+            ram.write(ram.program_start + i, memblock[i]);
+        }
+
+        delete[] memblock;
+        std::cout << "ROM loaded" << std::endl;
     }
-    std::cout << "ROM loaded" << std::endl;
 }
 
 void Emulator::run() {
@@ -35,10 +45,12 @@ void Emulator::run() {
             while (instruction_num > 0 && cpu.program_counter < ram.size) {
                 doInstruction();
                 instruction_num--;
+                // std::cin.get();
             }
             cpu.updateTimers();
             out.updateDisplay();
             start = steady_clock::now();
+            out.getInput();
         }
     }
 }

@@ -12,7 +12,7 @@ public:
     Memory();    
     ~Memory();
     void init();
-    const uint8_t read(uint16_t addr);
+    uint8_t read(uint16_t addr);
     void write(uint16_t addr, uint8_t value);
     void loadFontSet();
     uint16_t getCharacter(uint8_t value);

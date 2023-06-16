@@ -41,16 +41,15 @@ void Emulator::run() {
     while (out.isOpen()) {
         steady_clock::time_point curr = steady_clock::now();
         if (chrono::duration_cast<chrono::milliseconds>(curr - start).count() >= 17) {
-            uint16_t instruction_num = 1;
+            uint16_t instruction_num = 15;
             while (instruction_num > 0 && cpu.program_counter < ram.size) {
                 doInstruction();
+                out.getInput();
                 instruction_num--;
-                // std::cin.get();
             }
             cpu.updateTimers();
             out.updateDisplay();
             start = steady_clock::now();
-            out.getInput();
         }
     }
 }

@@ -41,5 +41,5 @@ class CPU {
         void opcodeCXNN(uint16_t instruction);
         void opcodeDXYN(uint16_t instruction, Display& display, Memory& ram);
         void opcodeEXNN(uint16_t instruction, Display& display);
-        void opcodeFXNN(uint16_t instruction, Memory ram, Display& display);
+        void opcodeFXNN(uint16_t instruction, Memory& ram, Display& display);
 };

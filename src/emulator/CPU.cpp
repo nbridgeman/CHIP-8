@@ -175,7 +175,7 @@ void CPU::opcode8XYN(uint16_t instruction) {
             registers[register1] = registers[register1] ^ registers[register2];
             break;
         case 0x4:
-            if (unsigned(registers[register1]) + unsigned(registers[register2] > 255)) {
+            if (unsigned(registers[register1]) + unsigned(registers[register2]) > 256) {
                 flag = 1;
             }
             registers[register1] = registers[register1] + registers[register2];
@@ -193,9 +193,6 @@ void CPU::opcode8XYN(uint16_t instruction) {
                 flag = 1;
             }
             registers[register1] = registers[register2] - registers[register1];
-            for (int i = 0; i < 16; i++) {
-                std::cout << unsigned(registers[i]) << " ";
-            }
             registers[0x0F] = flag;
             break;
         case 0x6:
@@ -281,7 +278,7 @@ void CPU::opcodeEXNN(uint16_t instruction, Display& display) {
 }
 
 // Timers and others
-void CPU::opcodeFXNN(uint16_t instruction, Memory ram, Display& display) {
+void CPU::opcodeFXNN(uint16_t instruction, Memory& ram, Display& display) {
     uint16_t register1 = (instruction & 0x0F00) >> 8;
     uint16_t operation = instruction & 0x00FF;
     switch (operation) {
@@ -304,7 +301,9 @@ void CPU::opcodeFXNN(uint16_t instruction, Memory ram, Display& display) {
             break;
         // decrements PC until a key is pressed
         case 0x0A:
-            if (!display.keyIsPressed || display.keyPressed != registers[register1]) {
+            if (display.keyIsPressed) {
+                registers[register1] = display.keyPressed;
+            } else {
                 program_counter -= 2;
             }
             break;
@@ -315,7 +314,7 @@ void CPU::opcodeFXNN(uint16_t instruction, Memory ram, Display& display) {
         // binary-coded decimal conversion
         case 0x33:
             {
-                uint8_t value = unsigned(registers[register1]);
+                uint8_t value = registers[register1];
                 for (uint8_t iter = 0; iter < 3; iter++) {
                     ram.write((index_register + (2 - iter)), value % 10);
                     value = value / 10;
@@ -324,28 +323,16 @@ void CPU::opcodeFXNN(uint16_t instruction, Memory ram, Display& display) {
             }
         // Store memory
         case 0x55:
-            if (super) {
-                for (uint8_t reg = 0; reg <= register1; reg++) {
-                    ram.write((index_register + reg), registers[reg]);
-                }
-            } else {
-                for (uint8_t reg = 0; reg <= register1; reg++) {
-                    ram.write(index_register, registers[reg]);
-                    index_register++;
-                }
+            for (uint8_t reg = 0; reg <= register1; reg++) {
+                ram.write(index_register, registers[reg]);
+                index_register += 1;
             }
             break;
         // Load memory
         case 0x65:
-            if (super) {
-                for (uint8_t reg = 0; reg <= register1; reg++) {
-                    registers[reg] = ram.read(index_register + reg);
-                }
-            } else {
-                for (uint8_t reg = 0; reg <= register1; reg++) {
-                    registers[reg] = ram.read(index_register);
-                    index_register++;
-                }
+            for (uint8_t reg = 0; reg <= register1; reg++) {
+                registers[reg] = ram.read(index_register);
+                index_register += 1;
             }
             break;
         default:

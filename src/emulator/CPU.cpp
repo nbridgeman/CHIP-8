@@ -301,8 +301,9 @@ void CPU::opcodeFXNN(uint16_t instruction, Memory& ram, Display& display) {
             break;
         // decrements PC until a key is pressed
         case 0x0A:
-            if (display.keyIsPressed) {
+            if (display.keyIsReleased) {
                 registers[register1] = display.keyPressed;
+                std::cout << std::hex << unsigned(registers[register1]) << std::endl;
             } else {
                 program_counter -= 2;
             }

@@ -53,6 +53,48 @@ void Display::updateDisplay() {
         // "close requested" event: we close the window
         if (event.type == sf::Event::Closed)
             window.close();
+        if (event.type == sf::Event::KeyReleased)
+            keyIsReleased = true;
+            keyIsPressed = false;
+        if (event.type == sf::Event::KeyPressed) {
+            keyIsPressed = true;
+            if (event.key.code == sf::Keyboard::Num1) {
+                keyPressed = 0x01;
+            } else if (event.key.code == sf::Keyboard::Num2) {
+                keyPressed = 0x02;
+            } else if (event.key.code == sf::Keyboard::Num3) {
+                keyPressed = 0x03;
+            } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4)) {
+                keyPressed = 0x0C;
+            } else if (event.key.code == sf::Keyboard::Q) {
+                keyPressed = 0x04;
+            } else if (event.key.code == sf::Keyboard::W) {
+                keyPressed = 0x05;
+            } else if (event.key.code == sf::Keyboard::E) {
+                keyPressed = 0x06;
+            } else if (event.key.code == sf::Keyboard::R) {
+                keyPressed = 0x0D;
+            } else if (event.key.code == sf::Keyboard::A) {
+                keyPressed = 0x07;
+            } else if (event.key.code == sf::Keyboard::S) {
+                keyPressed = 0x08;
+            } else if (event.key.code == sf::Keyboard::D) {
+                keyPressed = 0x09;
+            } else if (event.key.code == sf::Keyboard::F) {
+                keyPressed = 0x0E;
+            } else if (event.key.code == sf::Keyboard::Z) {
+                keyPressed = 0x0A;
+            } else if (event.key.code == sf::Keyboard::X) {
+                keyPressed = 0x00;
+            } else if (event.key.code == sf::Keyboard::C) {
+                keyPressed = 0x0B;
+            } else if (event.key.code == sf::Keyboard::V) {
+                keyPressed = 0x0F;
+            } else {
+                keyIsPressed = false;
+            }
+            keyIsReleased = false;
+        }
     }
 
     // clear the window with black color
@@ -67,9 +109,6 @@ void Display::updateDisplay() {
             window.draw(on_pixel);
         }
     }
-
-    getInput();
-
     // end the current frame
     window.display();
 }
@@ -80,58 +119,4 @@ uint8_t Display::getX(uint16_t loc) {
 
 uint8_t Display::getY(uint16_t loc) {
     return loc / 64;
-}
-
-void Display::getInput() {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)) {
-        keyPressed = 0x01;
-        keyIsPressed = true;
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)) {
-        keyPressed = 0x02;
-        keyIsPressed = true;
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)) {
-        keyPressed = 0x03;
-        keyIsPressed = true;
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4)) {
-        keyPressed = 0x0C;
-        keyIsPressed = true;
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
-        keyPressed = 0x04;
-        keyIsPressed = true;
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-        keyPressed = 0x05;
-        keyIsPressed = true;
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
-        keyPressed = 0x06;
-        keyIsPressed = true;
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
-        keyPressed = 0x0D;
-        keyIsPressed = true;
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-        keyPressed = 0x07;
-        keyIsPressed = true;
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-        keyPressed = 0x08;
-        keyIsPressed = true;
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-        keyPressed = 0x09;
-        keyIsPressed = true;
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
-        keyPressed = 0x0E;
-        keyIsPressed = true;
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
-        keyPressed = 0x0A;
-        keyIsPressed = true;
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::X)) {
-        keyPressed = 0x00;
-        keyIsPressed = true;
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::C)) {
-        keyPressed = 0x0B;
-        keyIsPressed = true;
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::V)) {
-        keyPressed = 0x0F;
-        keyIsPressed = true;
-    } else {
-        keyIsPressed = false;
-    }
 }

@@ -44,7 +44,6 @@ void Emulator::run() {
             uint16_t instruction_num = 15;
             while (instruction_num > 0 && cpu.program_counter < ram.size) {
                 doInstruction();
-                out.getInput();
                 instruction_num--;
             }
             cpu.updateTimers();

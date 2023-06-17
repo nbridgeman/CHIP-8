@@ -13,9 +13,7 @@ class Display {
         uint8_t draw(uint8_t x, uint8_t y, uint8_t n, Memory& ram, uint16_t index);
         void clear();
         void updateDisplay();
-        uint8_t keyPressed;
-        bool keyIsPressed;
-        bool keyIsReleased = false;
+        bool keys[16] = { false };
     private:
         bool pixels[2048] = { 0 };
         uint16_t getLoc(uint8_t x, uint8_t y);

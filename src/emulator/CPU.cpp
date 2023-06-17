@@ -267,11 +267,11 @@ void CPU::opcodeEXNN(uint16_t instruction, Display& display) {
     uint16_t register1 = (instruction & 0x0F00) >> 8;
     uint16_t operation = instruction & 0x00FF;
     if (operation == 0x009E) {
-        if (display.keyIsPressed && display.keyPressed == registers[register1]) {
+        if (display.keys[registers[register1]]) {
             program_counter += 2;
         }
     } else if (operation == 0x00A1) {
-        if (display.keyIsPressed && display.keyPressed != registers[register1]) {
+        if (!display.keys[registers[register1]]) {
             program_counter += 2;
         }
     }
@@ -301,13 +301,19 @@ void CPU::opcodeFXNN(uint16_t instruction, Memory& ram, Display& display) {
             break;
         // decrements PC until a key is pressed
         case 0x0A:
-            if (display.keyIsReleased) {
-                registers[register1] = display.keyPressed;
-                std::cout << std::hex << unsigned(registers[register1]) << std::endl;
-            } else {
-                program_counter -= 2;
+            {
+                bool key_released = false;
+                for (uint8_t key = 0; key < 16; key++) {
+                    if (!display.keys[key] && last_keys[key]) {
+                        registers[register1] = key;
+                        key_released = true;
+                    }
+                    last_keys[key] = display.keys[key];
+                }
+                if (!key_released)
+                    program_counter -= 2;
+                break;
             }
-            break;
         // gets the location of font character
         case 0x29:
             index_register = ram.getCharacter(registers[register1]);

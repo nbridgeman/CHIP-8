@@ -53,47 +53,73 @@ void Display::updateDisplay() {
         // "close requested" event: we close the window
         if (event.type == sf::Event::Closed)
             window.close();
-        if (event.type == sf::Event::KeyReleased)
-            keyIsReleased = true;
-            keyIsPressed = false;
         if (event.type == sf::Event::KeyPressed) {
-            keyIsPressed = true;
-            if (event.key.code == sf::Keyboard::Num1) {
-                keyPressed = 0x01;
-            } else if (event.key.code == sf::Keyboard::Num2) {
-                keyPressed = 0x02;
-            } else if (event.key.code == sf::Keyboard::Num3) {
-                keyPressed = 0x03;
-            } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4)) {
-                keyPressed = 0x0C;
-            } else if (event.key.code == sf::Keyboard::Q) {
-                keyPressed = 0x04;
-            } else if (event.key.code == sf::Keyboard::W) {
-                keyPressed = 0x05;
-            } else if (event.key.code == sf::Keyboard::E) {
-                keyPressed = 0x06;
-            } else if (event.key.code == sf::Keyboard::R) {
-                keyPressed = 0x0D;
-            } else if (event.key.code == sf::Keyboard::A) {
-                keyPressed = 0x07;
-            } else if (event.key.code == sf::Keyboard::S) {
-                keyPressed = 0x08;
-            } else if (event.key.code == sf::Keyboard::D) {
-                keyPressed = 0x09;
-            } else if (event.key.code == sf::Keyboard::F) {
-                keyPressed = 0x0E;
-            } else if (event.key.code == sf::Keyboard::Z) {
-                keyPressed = 0x0A;
-            } else if (event.key.code == sf::Keyboard::X) {
-                keyPressed = 0x00;
-            } else if (event.key.code == sf::Keyboard::C) {
-                keyPressed = 0x0B;
-            } else if (event.key.code == sf::Keyboard::V) {
-                keyPressed = 0x0F;
-            } else {
-                keyIsPressed = false;
-            }
-            keyIsReleased = false;
+            if (event.key.code == sf::Keyboard::Num1)
+                keys[0x01] = true;
+            if (event.key.code == sf::Keyboard::Num2)
+                keys[0x02] = true;
+            if (event.key.code == sf::Keyboard::Num3)
+                keys[0x03] = true;
+            if (event.key.code == sf::Keyboard::Num4)
+                keys[0x0C] = true;
+            if (event.key.code == sf::Keyboard::Q)
+                keys[0x04] = true;
+            if (event.key.code == sf::Keyboard::W)
+                keys[0x05] = true;
+            if (event.key.code == sf::Keyboard::E)
+                keys[0x06] = true;
+            if (event.key.code == sf::Keyboard::R)
+                keys[0x0D] = true;
+            if (event.key.code == sf::Keyboard::A)
+                keys[0x07] = true;
+            if (event.key.code == sf::Keyboard::S)
+                keys[0x08] = true;
+            if (event.key.code == sf::Keyboard::D)
+                keys[0x09] = true;
+            if (event.key.code == sf::Keyboard::F)
+                keys[0x0E] = true;
+            if (event.key.code == sf::Keyboard::Z)
+                keys[0x0A] = true;
+            if (event.key.code == sf::Keyboard::X)
+                keys[0x00] = true;
+            if (event.key.code == sf::Keyboard::C)
+                keys[0x0B] = true;
+            if (event.key.code == sf::Keyboard::V)
+                keys[0x0F] = true;
+        }
+        if (event.type == sf::Event::KeyReleased) {
+            if (event.key.code == sf::Keyboard::Num1)
+                keys[0x01] = false;
+            if (event.key.code == sf::Keyboard::Num2)
+                keys[0x02] = false;
+            if (event.key.code == sf::Keyboard::Num3)
+                keys[0x03] = false;
+            if (event.key.code == sf::Keyboard::Num4)
+                keys[0x0C] = false;
+            if (event.key.code == sf::Keyboard::Q)
+                keys[0x04] = false;
+            if (event.key.code == sf::Keyboard::W)
+                keys[0x05] = false;
+            if (event.key.code == sf::Keyboard::E)
+                keys[0x06] = false;
+            if (event.key.code == sf::Keyboard::R)
+                keys[0x0D] = false;
+            if (event.key.code == sf::Keyboard::A)
+                keys[0x07] = false;
+            if (event.key.code == sf::Keyboard::S)
+                keys[0x08] = false;
+            if (event.key.code == sf::Keyboard::D)
+                keys[0x09] = false;
+            if (event.key.code == sf::Keyboard::F)
+                keys[0x0E] = false;
+            if (event.key.code == sf::Keyboard::Z)
+                keys[0x0A] = false;
+            if (event.key.code == sf::Keyboard::X)
+                keys[0x00] = false;
+            if (event.key.code == sf::Keyboard::C)
+                keys[0x0B] = false;
+            if (event.key.code == sf::Keyboard::V)
+                keys[0x0F] = false;
         }
     }
 

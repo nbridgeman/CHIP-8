@@ -6,7 +6,6 @@ Memory::~Memory() { }
 
 void Memory::init() {
     loadFontSet();
-    write(0x1FF, 2);
 }
 
 void Memory::loadFontSet() {

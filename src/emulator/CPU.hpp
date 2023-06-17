@@ -26,6 +26,7 @@ class CPU {
         bool super;
 
     private:
+        bool last_keys[16] = { false };
         void opcode00EE(uint16_t instruction, Display& display);
         void opcode1NNN(uint16_t instruction);
         void opcode2NNN(uint16_t instruction);

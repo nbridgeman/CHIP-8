@@ -20,7 +20,7 @@ set_property(GLOBAL PROPERTY _CMAKE_FindGit_GIT_EXECUTABLE_VERSION
 
 include(ExternalProject)
 ExternalProject_Add(sfml-populate
-                     "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://github.com/SFML/SFML.git" "GIT_TAG" "2.6.X"
+                     "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://github.com/SFML/SFML.git" "GIT_TAG" "2.6.x"
                     SOURCE_DIR          "C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-src"
                     BINARY_DIR          "C:/Users/bridg/Documents/Programming/repos/CHIP-8/build/_deps/sfml-build"
                     CONFIGURE_COMMAND   ""

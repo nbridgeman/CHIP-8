@@ -9,8 +9,6 @@ Emulator::~Emulator() {
 }
 
 void Emulator::loadRom(std::string fileName) {
-    ram.init();
-
     std::streampos size;
     char * memblock;
 
@@ -35,6 +33,7 @@ void Emulator::run() {
     // every 16.67 ms we do a bunch of instructions and decrement timers
     using namespace std;
     using chrono::steady_clock;
+    ram.loadFontSet();
     cpu.program_counter = ram.program_start;
     out.open();
     steady_clock::time_point start = steady_clock::now();

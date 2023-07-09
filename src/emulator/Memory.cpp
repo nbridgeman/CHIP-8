@@ -4,10 +4,6 @@ Memory::Memory() { }
 
 Memory::~Memory() { }
 
-void Memory::init() {
-    loadFontSet();
-}
-
 void Memory::loadFontSet() {
     static constexpr uint8_t num_char = 16;
     static constexpr uint8_t char_size = 5;
@@ -31,14 +27,13 @@ void Memory::loadFontSet() {
     
     for (uint8_t character = 0; character < num_char; character++) {
         for (uint8_t byte = 0; byte < char_size; byte++) {
-            write((Memory::font_start + character + byte), font[character][byte]);
+            mem[Memory::font_start + (5 * character) + byte] = font[character][byte];
         }
     }
 }
 
 uint8_t Memory::read(uint16_t addr) {
     if (addr > Memory::size) {
-        // TODO: Turn addr into a hex before printing.
         std::cout << "[Memory] Read Address " << std::hex << unsigned(addr) << " is out of range." << std::endl;
         return 0x00;
     } 
@@ -47,7 +42,6 @@ uint8_t Memory::read(uint16_t addr) {
 
 void Memory::write(uint16_t addr, uint8_t value) {
     if (addr > Memory::size) {
-        // TODO: Turn addr into a hex before printing.
         std::cout << "[Memory] Write Address " << std::hex << unsigned(addr) << " is out of range." << std::endl;
         return;
     }
@@ -55,5 +49,5 @@ void Memory::write(uint16_t addr, uint8_t value) {
 }
 
 uint16_t Memory::getCharacter(uint8_t value) {
-    return(mem[Memory::font_start + (value * 5)]);
+    return(Memory::font_start + (value * 5));
 }

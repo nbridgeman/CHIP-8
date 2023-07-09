@@ -4,7 +4,7 @@ project(chip8 LANGUAGES CXX)
 include(FetchContent)
 FetchContent_Declare(SFML 
     GIT_REPOSITORY https://github.com/SFML/SFML.git 
-    GIT_TAG 2.6.X)
+    GIT_TAG 2.6.x)
 FetchContent_MakeAvailable(SFML)
 
 add_executable(chip8 src/main.cpp src/emulator/Emulator.cpp src/emulator/Display.cpp src/emulator/CPU.cpp src/emulator/Memory.cpp src/emulator/Timer.cpp)
